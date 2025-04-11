@@ -1,0 +1,3 @@
+/home/luigi/Desktop/cogrob/group3_ws/devel/./cmake.lock 34
+/home/luigi/Desktop/group3_ws/group3_ws/devel/./cmake.lock 60
+/home/dario1492/Desktop/project_cognitive/ros_project/group3_ws/devel/./cmake.lock 15

@@ -1,0 +1,5 @@
+ros_audio_pkg
+/home/dario1492/Desktop/project_cognitive/ros_project/group3_ws/devel/.private/ros_audio_pkg/cmake.lock /home/dario1492/Desktop/project_cognitive/ros_project/group3_ws/devel/./cmake.lock
+/home/dario1492/Desktop/project_cognitive/ros_project/group3_ws/devel/.private/ros_audio_pkg/share/ros_audio_pkg/cmake/ros_audio_pkgConfig-version.cmake /home/dario1492/Desktop/project_cognitive/ros_project/group3_ws/devel/share/ros_audio_pkg/cmake/ros_audio_pkgConfig-version.cmake
+/home/dario1492/Desktop/project_cognitive/ros_project/group3_ws/devel/.private/ros_audio_pkg/share/ros_audio_pkg/cmake/ros_audio_pkgConfig.cmake /home/dario1492/Desktop/project_cognitive/ros_project/group3_ws/devel/share/ros_audio_pkg/cmake/ros_audio_pkgConfig.cmake
+/home/dario1492/Desktop/project_cognitive/ros_project/group3_ws/devel/.private/ros_audio_pkg/lib/pkgconfig/ros_audio_pkg.pc /home/dario1492/Desktop/project_cognitive/ros_project/group3_ws/devel/lib/pkgconfig/ros_audio_pkg.pc

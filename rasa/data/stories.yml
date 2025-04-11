@@ -1,0 +1,45 @@
+version: "2.0"
+
+stories:
+
+- story: conversation
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: purpose_bot
+  - action: utter_purpose
+
+- story: form interjection
+  steps:
+    - action: person_form
+    - active_loop: person_form
+    - or:
+      - intent: count_people
+      - intent: ask_with_info
+      - intent: mood_greet
+    - action: utter_handle_form
+    - action: person_form
+
+- story: new search
+  steps:
+    - action: utter_new_search
+    - intent: affirm
+    - action: utter_ask_other_info
+
+- story: new search
+  steps:
+    - action: utter_new_search
+    - intent: deny
+    - action: utter_goodbye
+    - action: action_all_slots_reset
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+

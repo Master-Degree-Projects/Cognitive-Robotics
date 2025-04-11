@@ -1,0 +1,1111 @@
+version: "3.1"
+
+nlu:
+# ---------- INTENTS ----------
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hi pepper
+    - hi peppa
+    - hi baby
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+    - hi there
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+    - thanks, bye
+
+- intent: purpose_bot
+  examples: |
+    - What can you do?
+    - How can you help me?
+    - What are your capabilities?
+    - How can I benefit from your assistance?
+    - Can you provide information about your skills?
+    - What are you capable of?
+    - In what ways can I leverage your abilities?
+    - How can I get started?
+
+- intent: affirm
+  examples: |
+    - Yes
+    - Y
+    - yes, thanks
+    - yes, thank you
+    - Indeed
+    - yes pepper
+    - yes peppa
+    - Of course
+    - That sounds good
+    - Correct
+    - Yes, it does
+    - Yes, he does
+    - Yes, she does
+    - yeah
+    - she wear it
+    - carry it
+    - brings it
+    - dress it
+
+- intent: affirm_with_entity
+  examples: |
+    - yes, he [has] a [bag]{"entity":"bag"}
+    - yes, he wears [hat]{"entity":"hat"}
+    - yes, she brings a [luggage]{"entity":"bag", "group":"bag_group", "value":"bag"}}
+    - yes, she carry a [satchel]{"entity":"bag", "group":"bag_group", "value":"bag"}}
+    - yes, he wears a [sombrero]{"entity":"hat","value":"hat"}
+    - yes, a big [beret]{"entity":"hat","value":"hat"}
+    - yes, small [pocket]{"entity":"bag", "group":"bag_group", "value":"bag"}}
+    - yes, preciously a [tam]{"entity":"hat","value":"hat"}
+    - yes, a beautiful [cap]{"entity":"hat","value":"hat"}
+    - yes, a stylish [bonnet]{"entity":"hat","value":"hat"}
+    - yeah, a stylish [knapsack]{"entity":"bag", "group":"bag_group", "value":"bag"}}
+    - yes, he [puts on] [topper]{"entity":"hat","value":"hat"}
+    - yes, he pass for the [bar]{"entity":"roi", "value":"bar"}
+    - yes, he pass for the [market]{"entity":"roi", "value":"market"}
+    - yes, she pass for the [bar]{"entity":"roi", "value":"bar"}
+    - yes, she pass for the [market]{"entity":"roi", "value":"market"}
+    - yes, he visited the [bar]{"entity":"roi", "value":"bar"}
+    - yes, he visited the [market]{"entity":"roi", "value":"market"}
+    - yes, she visited the [bar]{"entity":"roi", "value":"bar"}
+    - yes, she visited the [market]{"entity":"roi", "value":"market"}
+
+- intent: deny
+  examples: |
+    - No
+    - N
+    - nono
+    - no thanks
+    - no, thank you
+    - no no
+    - Never
+    - no pepper
+    - no peppa
+    - I don't think so
+    - No way
+    - No, he doesn't
+    - No, he does not
+    - No, she doesn't
+    - No, she does not
+    - No, it doesn't
+    - No, it does not
+    - Nope
+    - No
+    - no, i can't
+    - no, i can not
+    - does not wear it
+
+- intent: stop_form
+  examples: |
+    - don't know more
+    - i haven't info about the person
+    - don't have any other info
+    - i don't know any other info
+    - no more info
+    - I don't have any more details about the individual.
+    - I've exhausted my knowledge about that person.
+    - There's no additional information available on him.
+    - There's no additional information available on her.
+    - Unfortunately, I can't provide any further info about the person.
+    - My knowledge about the individual is limited to what has been shared.
+    - I've reached the end of my information about that person.
+    - I don't possess any other data about them.
+    - i don't know any other info about that person.
+    - I'm unable to furnish any more information on that particular person.
+    - I've shared all the information I have about the person in question.
+    - I've provided all the available information about the person.
+    - There's no additional data that i know about them.
+    - I can't offer any more details regarding that individual.
+    - Unfortunately, I don't have any further info about the person.
+    - I've reached the limit of information on that specific person.
+    - I've shared everything I know about that individual.
+    - i don't know any additional details 
+    - I'm unable to extend the information I've already provided.
+    - I've exhausted my resources on details about that person.
+    - stop asking
+    - stop
+    - enough with the question
+    - that's enough with the question
+    - Please refrain from asking any further questions.
+    - I'd appreciate it if you could stop asking me questions.
+    - Let's put an end to the questions, okay?
+    - I'd prefer if you didn't ask me any more questions.
+    - It would be great if you could avoid asking more questions.
+    - I need a break from answering questions, so let's stop.
+    - Let's keep it at that and not ask  more questions.
+    - No more questions, if you don't mind.
+    - I'm reaching my limit for questions, so let's wrap it up.
+
+- intent: deny_with_entity
+  examples: |
+    - no, he [don't have]{"entity":"is_with", "group":"hat_group", "value":"false"} a [beret]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - no, he [don't wear]{"entity":"is_with", "group":"bag_group", "value":"false"} a [bag]{"entity":"bag", "group":"bag_group"}
+    - no, he [don't wear]{"entity":"is_with", "group":"hat_group", "value":"false"} a [hat]{"entity":"hat", "group":"hat_group"}
+    - no, she [don't bring]{"entity":"is_with", "group":"bag_group", "value":"false"} [luggage]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - no, no, she [don't wear]{"entity":"is_with", "group":"bag_group", "value":"false"} [rucksack]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - no, he [doesn't bring]{"entity":"is_with", "group":"bag_group", "value":"false"} [case]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - no, she [doesn't dress]{"entity":"is_with", "group":"hat_group", "value":"false"} [fedora]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - no, he [not wear]{"entity":"is_with", "group":"hat_group", "value":"false"} [headgear]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - no, he [has not]{"entity":"is_with", "group":"hat_group", "value":"false"} [beanie]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - no, she [don't carry]{"entity":"is_with", "group":"bag_group", "value":"false"} [carryall]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - no, he [hasn't]{"entity":"is_with", "group":"bag_group", "value":"false"} a [satchel]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - no, he [doesn't pass]{"entity":"is_with", "group":"bar_group", "value":"false"} for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - no, she [doesn't pass]{"entity":"is_with", "group":"bar_group", "value":"false"} for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - no, he [doesn't pass]{"entity":"is_with", "group":"market_group", "value":"false"} for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - no, she [doesn't pass]{"entity":"is_with", "group":"market_group", "value":"false"} for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - no, he [hasn't visited]{"entity":"is_with", "group":"bar_group", "value":"false"}  the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - no, she [hasn't visited]{"entity":"is_with", "group":"bar_group", "value":"false"}  the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - no, he [hasn't visited]{"entity":"is_with", "group":"market_group", "value":"false"} [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - no, she [hasn't visited]{"entity":"is_with", "group":"market_group", "value":"false"} [market]{"entity":"roi","group":"market_group", "value":"market"}
+
+- intent: doubt
+  examples: | 
+    - i don't know
+    - i do not know
+    - No idea
+    - have no idea
+    - I have no idea
+    - Dunno
+    - I haven’t a clue
+    - I don't remember
+    - i do not remember
+    - do not rembember
+    - i'ven't idea
+    - It’s a mystery to me
+    - Hmm...
+    - I’m not sure
+    - I am not sure
+    - I am not too sure
+    - i am not sur
+    - That’s exactly what I’m seeking to answer.
+    - I'm not sure.
+    - I have no clue.
+    - I'm not certain.
+    - I'm unsure.
+    - I'm not entirely convinced.
+    - I'm not confident about that.
+    - I don't have the faintest idea.
+    - I'm not entirely clear on that.
+    - I can't say for certain.
+    - I'm not 100% sure.
+    - I'm not in the know.
+    - I don't have the answer.
+    - I'm not informed on that.
+    - I'm not acquainted with that.
+    - I don't possess that information.
+    - I haven't got a clue.
+    - I'm not privy to that.
+    - I'm not in the know.
+    - I don't possess that knowledge.
+    - I'm not aware of that.
+    - I don't have that data.
+    - maybe
+
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+
+# group intento per "con", intento per "senza"
+# entity: with -> boolean
+# group (with, entity)
+
+- intent: ask_with_info
+  examples: |
+    - Do you see a [male]{"entity":"gender", "value":"male"} [with]{"entity":"is_with", "group":"hat_group", "value":"true"} a [hat]{"entity":"hat", "group":"hat_group"}?
+    - I'm searching for a person [wearing]{"entity":"is_with", "group":"upper_group", "value":"true"} [white]{"entity":"color", "group":"upper_group", "value":"white"} [tee]{"entity":"shirt", "group":"upper_group", "value":"shirt"}.
+    - I've seen a person [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [blue]{"entity":"color", "group":"upper_group", "value":"blue"} [hoodie]{"entity":"shirt", "group":"upper_group", "value":"shirt"}.
+    - Have you seen an individual [without]{"entity":"is_with", "group":"upper_group", "value":"false"} [pink]{"entity":"color", "group":"upper_group", "value":"pink"} [shirt]{"entity":"shirt", "group":"upper_group"} and [with]{"entity":"is_with", "group":"bag_group", "value":"true"} [case]{"entity":"bag", "group":"bag_group", "value":"bag"}?
+    - There is a [stepdaughter]{"entity":"gender", "value":"female"} [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [orange]{"entity":"color", "group":"upper_group", "value":"orange"} [coat]{"entity":"shirt", "group":"upper_group", "value":"shirt"}, have you seen her?
+    - Have you seen a [man]{"entity":"gender", "value":"male"} [without]{"entity":"is_with", "group":"lower_group", "value":"false"} a [grey]{"entity":"color", "group":"lower_group", "value":"grey"} [jeans]{"entity":"pants", "group":"lower_group", "value":"pants"}?
+    - I'm searching a [young man]{"entity":"gender", "value":"male"} [having]{"entity":"is_with", "group":"lower_group", "value":"true"} [black]{"entity":"color", "group":"lower_group", "value":"black"} [trousers]{"entity":"pants", "group":"lower_group", "value":"pants"}.
+    - I'm searching for my [wife]{"entity":"gender", "value":"female"} [with]{"entity":"is_with", "group":"upper_group", "value":"true"} a [white]{"entity":"color", "group":"upper_group", "value":"white"} [t-shirt]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - I'm searching for a [man]{"entity":"gender", "value":"male"} [having]{"entity":"is_with", "group":"upper_group", "value":"true"} a [orange]{"entity":"color", "group":"upper_group", "value":"orange"} [polo]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - I'm searching for a [woman]{"entity":"gender", "value":"female"} [with]{"entity":"is_with", "group":"upper_group", "value":"true"} a [yellow]{"entity":"color", "group":"upper_group", "value":"yellow"} [top]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - I want to find a [female cousin]{"entity":"gender", "value":"female"} [without]{"entity":"is_with", "group":"hat_group", "value":"false"} a [bonnet]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - I'm on lookout for a [young man]{"entity":"gender", "value":"male"} [not wearing]{"entity":"is_with", "group":"lower_group", "value":"false"} [black]{"entity":"color", "group":"lower_group", "value":"black"} [leggings]{"entity":"pants", "group":"lower_group", "value":"pants"}.
+    - i am look for a [man]{"entity":"gender", "value":"male"}
+    - I'm searching for someone [without]{"entity":"is_with", "group":"lower_group", "value":"false"} [black]{"entity":"color", "group":"lower_group", "value":"black"}  [jeans]{"entity":"pants", "group":"lower_group", "value":"pants"} and [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [white]{"entity":"color", "group":"upper_group", "value":"white"} [T-shirt]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - I'm trying to locate someone [having]{"entity":"is_with", "group":"lower_group", "value":"true"} a [brown]{"entity":"color", "group":"lower_group", "value":"brown"} [bottoms]{"entity":"pants", "group":"lower_group", "value":"pants"} and [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [purple]{"entity":"color", "group":"upper_group", "value":"purple"} [polo]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - I'm seeking out a person [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [red]{"entity":"color", "group":"lower_group", "value":"red"} [sweatpants]{"entity":"pants", "group":"lower_group", "value":"pants"} and [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [orange]{"entity":"color", "group":"upper_group", "value":"orange"} [pullover]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - Can you find someone [wear]{"entity":"is_with", "group":"lower_group", "value":"true"} [black]{"entity":"color", "group":"lower_group", "value":"black"} [chinos]{"entity":"pants", "group":"lower_group", "value":"pants"} and [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [orange]{"entity":"color", "group":"upper_group", "value":"orange"} [oxford]{"entity":"shirt", "group":"upper_group", "value":"shirt"}?
+    - I want to find my friend [has on]{"entity":"is_with", "group":"lower_group", "value":"true"} [grey]{"entity":"color", "group":"lower_group", "value":"grey"} [corduroys]{"entity":"pants", "group":"lower_group", "value":"pants"} and [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [brown]{"entity":"color", "group":"upper_group", "value":"brown"} [tee]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - Have you seen a person [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [red]{"entity":"color", "group":"upper_group", "value":"red"} [sweatshirts]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [grey]{"entity":"color", "group":"lower_group", "value":"grey"}  [jeans]{"entity":"pants", "group":"lower_group", "value":"pants"}?
+    - I'm in searching for someone [without]{"entity":"is_with", "group":"upper_group", "value":"false"} [pink]{"entity":"color", "group":"upper_group", "value":"pink"} [polo]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [brown]{"entity":"color", "group":"lower_group", "value":"brown"} [slacks]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - I'm trying to locate someone [using]{"entity":"is_with", "group":"upper_group", "value":"true"} [purple]{"entity":"color", "group":"upper_group", "value":"purple"} [oxford]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [white]{"entity":"color", "group":"lower_group", "value":"white"} [leggins]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    
+    - Have you seen somebody [wearing]{"entity":"is_with", "group":"upper_group", "value":"true"} [white]{"entity":"color", "group":"upper_group", "value":"white"} [hoodie]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [blue]{"entity":"color", "group":"lower_group", "value":"blue"} [jeans]{"entity":"pants", "group":"lower_group", "value":"pants"}?
+    - Have you seen someone [having]{"entity":"is_with", "group":"lower_group", "value":"true"} [blue]{"entity":"color", "group":"lower_group", "value":"blue"} [jeans]{"entity":"pants", "group":"lower_group", "value":"pants"} and [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [yellow]{"entity":"color", "group":"upper_group", "value":"yellow"} [hoodie]{"entity":"shirt", "group":"upper_group", "value":"shirt"}?
+    - Have you seen one [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [black]{"entity":"color", "group":"lower_group", "value":"black"} [jeans]{"entity":"pants", "group":"lower_group", "value":"pants"} and [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [blue]{"entity":"color", "group":"upper_group", "value":"blue"} [top]{"entity":"shirt", "group":"upper_group", "value":"shirt"}?
+    - Have you seen anyone [putting on]{"entity":"is_with", "group":"upper_group", "value":"true"} [white]{"entity":"color", "group":"upper_group", "value":"white"} [T-shirt]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [blue]{"entity":"color", "group":"lower_group", "value":"blue"} [pants]{"entity":"pants", "group":"lower_group", "value":"pants"}?
+    - Have you seen someone [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [yellow]{"entity":"color", "group":"lower_group", "value":"yellow"} [skirt]{"entity":"pants", "group":"lower_group", "value":"pants"}?
+    
+    - I'm look for a individual [putting on]{"entity":"is_with", "group":"upper_group", "value":"true"} [black]{"entity":"color", "group":"upper_group", "value":"black"} [polo]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [pink]{"entity":"color", "group":"lower_group", "value":"pink"} [pants]{"entity":"pants", "group":"lower_group", "value":"pants"}.
+    - I'm look for a person [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [pink]{"entity":"color", "group":"lower_group", "value":"pink"} [trousers]{"entity":"pants", "group":"lower_group", "value":"pants"} and [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [black]{"entity":"color", "group":"upper_group", "value":"black"} [hoodie]{"entity":"shirt", "group":"upper_group", "value":"shirt"}.
+    
+    - I am find out where is a person [wearing]{"entity":"is_with", "group":"hat_group", "value":"true"} [cap]{"entity":"hat", "group":"hat_group", "value":"hat"} and [having]{"entity":"is_with", "group":"bag_group", "value":"true"} [handbag]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - Have you seen a individual [with]{"entity":"is_with", "group":"hat_group", "value":"true"} [topper]{"entity":"hat", "group":"hat_group"} and [with]{"entity":"is_with", "group":"bag_group", "value":"true"} [knaspack]{"entity":"bag", "group":"bag_group", "value":"bag"}?
+    - I am looking for a person [having]{"entity":"is_with", "group":"bag_group", "value":"true"} [luggage]{"entity":"is_with", "group":"bag_group"} and [dressing in]{"entity":"is_with", "group":"hat_group", "value":"true"}  [helmet]{"entity":"hat", "group":"hat_group"}
+    - Have you seen a someone [with]{"entity":"is_with", "group":"bag_group", "value":"true"} [rucksack]{"entity":"is_with", "group":"bag_group"} and [having]{"entity":"is_with", "group":"hat_group", "value":"true"} [beret]{"entity":"hat", "group":"hat_group"}?
+    - I am searching [mother-in-law]{"entity":"gender", "value":"female"} [dress in]{"entity":"is_with", "group":"lower_group", "value":"true"} [brown]{"entity":"color", "group":"lower_group", "value":"brown"} [leggings]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - Is there a [stepson]{"entity":"gender", "value":"male"} [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [grey]{"entity":"color", "group":"lower_group", "value":"grey"} [tights]{"entity":"pants", "group":"lower_group", "value":"pants"}?
+    - Have you seen anyone who matches the description of a [mum]{"entity":"gender", "value":"female"} [having on]{"entity":"is_with", "group":"lower_group", "value":"true"} [purple]{"entity":"color", "group":"lower_group", "value":"purple"} [leggings]{"entity":"pants", "group":"lower_group", "value":"pants"}?
+    - Have you noticed a [father-in-law]{"entity":"gender", "value":"male"} [wearing]{"entity":"is_with", "group":"lower_group", "value":"true"} [green]{"entity":"color", "group":"lower_group", "value":"green"} [trousers]{"entity":"pants", "group":"lower_group", "value":"pants"}?
+    - Can you tell me if you see [girlfriend]{"entity":"gender", "value":"female"} [putting on]{"entity":"is_with", "group":"lower_group", "value":"true"} [red]{"entity":"color", "group":"lower_group", "value":"red"} [skirts]{"entity":"pants", "group":"lower_group", "value":"pants"}?
+    - Have you noticed a [stepfather]{"entity":"gender", "value":"male"} [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [white]{"entity":"color", "group":"lower_group", "value":"white"} [chinos]{"entity":"pants", "group":"lower_group", "value":"pants"}?
+    - I'm searching a [lady]{"entity":"gender", "value":"female"} [wearing]{"entity":"is_with", "group":"lower_group", "value":"true"} [pink]{"entity":"color", "group":"lower_group", "value":"pink"} [sweatpants]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - Have you noticed a [old man]{"entity":"gender", "value":"male"} [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [green]{"entity":"color", "group":"upper_group", "value":"green"} [sweaters]{"entity":"shirt", "group":"upper_group", "value":"shirt"}?
+    
+    - I'm on lookout for a [young woman]{"entity":"gender", "value":"female"} [having]{"entity":"is_with", "group":"lower_group", "value":"true"} [purple]{"entity":"color", "group":"lower_group", "value":"purple"} [pants]{"entity":"pants", "group":"lower_group", "value":"pants"}.
+    - I'm trying to locate a [female]{"entity":"gender", "value":"female"} [using]{"entity":"is_with", "group":"bag_group", "value":"true"} a [sack]{"entity":"bag", "group":"bag_group", "value":"bag"}.
+    - I'm looking for a [female]{"entity":"gender", "value":"female"} [with]{"entity":"is_with", "group":"bag_group", "value":"true"} [rucksack]{"entity":"bag", "group":"bag_group", "value":"bag"}.
+    - I'm in process of finding a [boy]{"entity":"gender", "value":"male"} who [doesn't have]{"entity":"is_with", "group":"upper_group", "value":"false"}  a [red]{"entity":"color", "group":"upper_group", "value":"red"} [pullover]{"entity":"shirt", "group":"upper_group", "value":"shirt"}.
+    - I'm on quest to discover a [gal]{"entity":"gender", "value":"female"}.
+    - He is a [male]{"entity":"gender", "value":"male"}.
+    - She is a [female]{"entity":"gender", "value":"female"}.
+    - he's wearing a [purple]{"entity":"color", "group":"upper_group", "value":"purple"} [pullover]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - I'm searching for a [man]{"entity":"gender", "value":"male"} [without]{"entity":"is_with", "group":"lower_group", "value":"false"} [brown]{"entity":"color", "group":"lower_group", "value":"brown"} [trousers]{"entity":"pants", "group":"lower_group", "value":"pants"}.
+    - I'm interested in a [boy]{"entity":"gender", "value":"male"} [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [white]{"entity":"color", "group":"upper_group", "value":"white"} [coat]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - I'm searching for a [mother-in-law]{"entity":"gender", "value":"female"} [with no]{"entity":"is_with", "group":"lower_group", "value":"false"} [grey]{"entity":"color", "group":"lower_group", "value":"grey"} [pants]{"entity":"pants", "group":"lower_group", "value":"pants"}.
+    - I'm searching for a [woman]{"entity":"gender", "value":"female"} [doesn't dress in]{"entity":"is_with", "group":"upper_group", "value":"false"} a [yellow]{"entity":"color", "group":"upper_group", "value":"yellow"}  [top]{"entity":"shirt", "group":"upper_group", "value":"shirt"}.
+    - Can you find a [young girl]{"entity":"gender", "value":"female"} who [isn't wearing]{"entity":"is_with", "group":"lower_group", "value":"false"} [pink]{"entity":"color", "group":"lower_group", "value":"pink"} [leggins]{"entity":"pants", "group":"lower_group", "value":"pants"}?
+    - I want to find a [niece]{"entity":"gender", "value":"female"} [with]{"entity":"is_with", "group":"upper_group", "value":"true"} a [green]{"entity":"color", "group":"upper_group", "value":"green"} [blouse]{"entity":"shirt", "group":"upper_group", "value":"shirt"}.
+    - I am finding a [lady] [with]{"entity":"is_with", "group":"hat_group", "value":"true"} a [beret]{"entity":"hat", "group":"hat_group"}
+    - Can you find a [boy]{"entity":"gender", "value":"male"} who's [wearing]{"entity":"is_with", "group":"upper_group", "value":"true"} a [black]{"entity":"color", "group":"upper_group", "value":"black"} [pullover]{"entity":"shirt", "group":"upper_group", "value":"shirt"}.
+    - Have you seen a [son-in-law]{"entity":"gender", "value":"male"} [without]{"entity":"is_with", "group":"lower_group", "value":"false"} [grey]{"entity":"color", "group":"lower_group", "value":"grey"} [sweatpants]{"entity":"pants", "group":"lower_group", "value":"pants"}?
+    - I'm on the hunt for a [lady]{"entity":"gender", "value":"female"} [with]{"entity":"is_with", "group":"upper_group", "value":"true"} a [pink]{"entity":"color", "group":"upper_group", "value":"pink"}  [zipped sweatshirt]{"entity":"shirt", "group":"upper_group", "value":"shirt"}.
+    - I'd like to find a [sir]{"entity":"gender", "value":"male"} [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [yellow]{"entity":"color", "group":"lower_group", "value":"yellow"} [chinos]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - I want a person [without]{"entity":"is_with", "group":"hat_group", "value":"false"} a [beanie]{"entity":"hat", "group":"hat_group", "value":"hat"} and [with]{"entity":"is_with", "group":"bag_group", "value":"true"} [backpack]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - I want to find a [man]{"entity":"gender", "value":"male"}
+    - I'm looking for a [woman]{"entity":"gender", "value":"female"}
+    - I'm interested in find a [aunt]{"entity":"gender", "value":"female"}
+    - I want to find a person [without]{"entity":"is_with", "group":"upper_group", "value":"false"} [yellow]{"entity":"color", "group":"upper_group", "value":"yellow"}  [jersey]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - I'm looking for a person who [doesn't wear]{"entity":"is_with", "group":"upper_group", "value":"false"} a [red]{"entity":"color", "group":"upper_group", "value":"red"}  [top]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - I'm interested in locating a person [dressed]{"entity":"is_with", "group":"upper_group", "value":"true"} in an [orange]{"entity":"color", "group":"upper_group", "value":"orange"}  [tunic]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - I'd like to find somebody [wearing]{"entity":"is_with", "group":"lower_group", "value":"true"} a [grey]{"entity":"color", "group":"lower_group", "value":"grey"}  [jeans]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - I want to discover someone [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [pink]{"entity":"color", "group":"lower_group", "value":"pink"} [trousers]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - Can you find me a person [with]{"entity":"is_with", "group":"hat_group", "value":"true"} a [bonnet]{"entity":"hat", "group":"hat_group", "value":"hat"}?
+    - I want to find a person [using]{"entity":"is_with", "group":"bag_group", "value":"true"} a [bag]{"entity":"bag", "group":"bag_group"}.
+    - I search my [brother]{"entity":"gender", "value":"male"}
+    - I am searching my [sister]{"entity":"gender", "value":"female"}
+    - I am searching a person [wearing]{"entity":"is_with", "group":"hat_group", "value":"true"} a [cap]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - Have you seen a [dude]{"entity":"gender", "value":"male"} [without]{"entity":"is_with", "group":"upper_group", "value":"false"} a [white]{"entity":"color", "group":"upper_group", "value":"white"} [button-up]{"entity":"shirt", "group":"upper_group", "value":"shirt"}?
+    - I am looking for my [sister]{"entity":"gender", "value":"female"} [with no]{"entity":"is_with", "group":"upper_group", "value":"false"} [yellow]{"entity":"color", "group":"upper_group", "value":"yellow"} [hoodie]{"entity":"shirt", "group":"upper_group", "value":"shirt"}.
+    - I am look a person [without]{"entity":"is_with", "group":"lower_group", "value":"false"} [brown]{"entity":"color", "group":"lower_group", "value":"brown"}  [jeans]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - I am look a person [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [purple]{"entity":"color", "group":"lower_group", "value":"purple"} [slacks]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - Have you seen a person [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [pink]{"entity":"color", "group":"upper_group", "value":"pink"} [oxford]{"entity":"shirt", "group":"upper_group", "value":"shirt"}?
+    
+    - I'm interested in finding my [brother]{"entity":"gender", "value":"male"} [without]{"entity":"is_with", "group":"lower_group", "value":"false"} [grey]{"entity":"color", "group":"lower_group", "value":"grey"} [trousers]{"entity":"pants", "group":"lower_group", "value":"pants"}.
+    - I'd like to find my [sister]{"entity":"gender", "value":"female"} [puts on]{"entity":"is_with", "group":"upper_group", "value":"true"} [green]{"entity":"color", "group":"upper_group", "value":"green"}  [jersey]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - I'm looking for my [mother]{"entity":"gender", "value":"female"} who [doesn't wear]{"entity":"is_with", "group":"lower_group", "value":"false"} [blue]{"entity":"color", "group":"lower_group", "value":"blue"} [slacks]{"entity":"pants", "group":"lower_group", "value":"pants"}.
+    - Did you see a [gal]{"entity":"gender", "value":"female"} [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [pink]{"entity":"color", "group":"upper_group", "value":"pink"} [button-up]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - I'm in search of my [father]{"entity":"gender", "value":"male"} [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [yellow]{"entity":"color", "group":"lower_group", "value":"yellow"} [leggins]{"entity":"pants", "group":"lower_group", "value":"pants"}.
+    - I'm hoping to find a [boyfriend]{"entity":"gender", "value":"male"} [without]{"entity":"is_with", "group":"upper_group", "value":"false"} a [red]{"entity":"color", "group":"upper_group", "value":"red"} [bluse]{"entity":"shirt", "group":"upper_group", "value":"shirt"}.
+    
+    - I want to find my [sister]{"entity":"gender", "value":"female"} [with no]{"entity":"is_with", "group":"upper_group", "value":"false"} [pink]{"entity":"color", "group":"upper_group", "value":"pink"} [blouse]{"entity":"shirt", "group":"upper_group", "value":"shirt"}.
+    - I'm looking for a individual [having on]{"entity":"is_with", "group":"lower_group", "value":"true"} [red]{"entity":"color", "group":"lower_group", "value":"red"} [tights]{"entity":"pants", "group":"lower_group", "value":"pants"}.
+    - I'm looking for a person who [doesn't wear]{"entity":"is_with", "group":"upper_group", "value":"false"} [black]{"entity":"color", "group":"upper_group", "value":"black"} [shirt]{"entity":"shirt", "group":"upper_group"}.
+    - Have you seen a [old woman] [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [black]{"entity":"color", "group":"lower_group", "value":"black"} [pants]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - Can you find my [mother]{"entity":"gender", "value":"female"} [doesn't carry]{"entity":"is_with", "group":"upper_group", "value":"false"} [yellow]{"entity":"color", "group":"upper_group", "value":"yellow"}  [top]{"entity":"shirt", "group":"upper_group", "value":"shirt"}.
+    - Can you find a [lady]{"entity":"gender", "value":"female"} [has on]{"entity":"is_with", "group":"upper_group", "value":"true"} [black]{"entity":"color", "group":"upper_group", "value":"black"} [polo]{"entity":"shirt", "group":"upper_group", "value":"shirt"}.
+    - Have you seen a person [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [red]{"entity":"color", "group":"upper_group", "value":"red"} [coat]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [grey]{"entity":"color", "group":"lower_group", "value":"grey"}  [jeans]{"entity":"pants", "group":"lower_group", "value":"pants"}?
+    - I'm in searching for someone [being clothed in]{"entity":"is_with", "group":"upper_group", "value":"false"} [pink]{"entity":"color", "group":"upper_group", "value":"pink"} [polo]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [brown]{"entity":"color", "group":"lower_group", "value":"brown"} [slacks]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - I'm trying to locate someone [using]{"entity":"is_with", "group":"upper_group", "value":"true"} [purple]{"entity":"color", "group":"upper_group", "value":"purple"} [oxford]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [white]{"entity":"color", "group":"lower_group", "value":"white"} [leggins]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - I'm on the lookout for a person [without]{"entity":"is_with", "group":"hat_group", "value":"false"} [fedora]{"entity":"hat", "group":"hat_group", "value":"hat"} and [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [pink]{"entity":"color", "group":"lower_group", "value":"pink"} [khakis]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - I'm hoping to find a person [wearing]{"entity":"is_with", "group":"hat_group", "value":"true"} [cap]{"entity":"hat", "group":"hat_group", "value":"hat"} and [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [brown]{"entity":"color", "group":"lower_group", "value":"brown"} [trousers]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - Did you see someone who [doesn't use]{"entity":"is_with", "group":"hat_group", "value":"false"} a [tam]{"entity":"hat", "group":"hat_group", "value":"hat"} and [dresses in]{"entity":"is_with", "group":"lower_group", "value":"true"} [yellow]{"entity":"color", "group":"lower_group", "value":"yellow"} [leggins]{"entity":"pants", "group":"lower_group", "value":"pants"}?
+    
+    - i am look for ap erson [wearing]{"entity":"is_with", "group":"lower_group", "value":"true"} [blue]{"entity":"color", "group":"lower_group", "value":"blue"} [jeans]{"entity":"pants", "group":"lower_group", "value":"pants"} and [black]{"entity":"color", "group":"upper_group", "value":"black"} [shirt]{"entity":"shirt", "group":"upper_group"}
+    - i am look for ap erson [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [blue]{"entity":"color", "group":"upper_group", "value":"blue"} [shirt]{"entity":"shirt", "group":"upper_group"} and [black]{"entity":"color", "group":"lower_group", "value":"black"} [jeans]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - i am look for a one [having]{"entity":"is_with", "group":"lower_group", "value":"true"} [pink]{"entity":"color", "group":"lower_group", "value":"pink"} [jeans]{"entity":"pants", "group":"lower_group", "value":"pants"} and [blue]{"entity":"color", "group":"upper_group", "value":"blue"} [shirt]{"entity":"shirt", "group":"upper_group"}
+    
+    - I'm on the lookout for a person [with]{"entity":"is_with", "group":"hat_group", "value":"true"} [topper]{"entity":"hat", "group":"hat_group", "value":"hat"} and [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [pink]{"entity":"color", "group":"upper_group", "value":"pink"}  [top]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - I'm hoping to find a one [dressing in]{"entity":"is_with", "group":"hat_group", "value":"true"} [cap]{"entity":"hat", "group":"hat_group", "value":"hat"} and [not wearing]{"entity":"is_with", "group":"upper_group", "value":"false"} [brown]{"entity":"color", "group":"upper_group", "value":"brown"} [tee]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - Did you see someone [using]{"entity":"is_with", "group":"hat_group", "value":"true"} a [fedora]{"entity":"hat", "group":"hat_group", "value":"hat"} and [dressing]{"entity":"is_with", "group":"upper_group", "value":"true"} [yellow]{"entity":"color", "group":"upper_group", "value":"yellow"} [T-shirt]{"entity":"shirt", "group":"upper_group", "value":"shirt"}?
+    - I'm trying to locate someone [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [orange]{"entity":"color", "group":"upper_group", "value":"orange"} [T-shirt]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [with]{"entity":"is_with", "group":"hat_group", "value":"true"} [beanie]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - Can you find me a person [without]{"entity":"is_with", "group":"upper_group", "value":"false"} [green]{"entity":"color", "group":"upper_group", "value":"green"} [oxford]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [putting on]{"entity":"is_with", "group":"hat_group", "value":"true"} a [beret]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - I'm seeking someone [using]{"entity":"is_with", "group":"upper_group", "value":"true"} [blue]{"entity":"color", "group":"upper_group", "value":"blue"} [bottom-up]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [putting on]{"entity":"is_with", "group":"hat_group", "value":"true"}  a [hat]{"entity":"hat", "group":"hat_group"}
+    - I'm on the lookout for a person [dresses on]{"entity":"is_with", "group":"bag_group", "value":"true"} [tote]{"entity":"bag", "group":"bag_group", "value":"bag"} and [using]{"entity":"is_with", "group":"lower_group", "value":"true"} [pink]{"entity":"color", "group":"lower_group", "value":"pink"} [khakis]{"entity":"pants", "group":"lower_group", "value":"pants"}.
+    - I'm hoping to find a person who [doesn't wear]{"entity":"is_with", "group":"bag_group", "value":"false"} [backpack]{"entity":"bag", "group":"bag_group", "value":"bag"} and [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [brown]{"entity":"color", "group":"lower_group", "value":"brown"} [trousers]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - Did you see anybody [doesn't using]{"entity":"is_with", "group":"bag_group", "value":"false"} a [tote]{"entity":"bag", "group":"bag_group", "value":"bag"} and [having]{"entity":"is_with", "group":"lower_group", "value":"true"} [red]{"entity":"color", "group":"lower_group", "value":"red"} [leggins]{"entity":"pants", "group":"lower_group", "value":"pants"}?
+    - I'm trying to locate someone [puts on]{"entity":"is_with", "group":"lower_group", "value":"true"} [orange]{"entity":"color", "group":"lower_group", "value":"orange"} [chinos]{"entity":"pants", "group":"lower_group", "value":"pants"} and [dressing]{"entity":"is_with", "group":"bag_group", "value":"true"} a [purse]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - Can you find me a one [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [green]{"entity":"color", "group":"lower_group", "value":"green"} [sweatpants]{"entity":"pants", "group":"lower_group", "value":"pants"} and [wearing]{"entity":"is_with", "group":"bag_group", "value":"true"} a [carryall]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - I'm seeking one [using]{"entity":"is_with", "group":"lower_group", "value":"true"} [blue]{"entity":"color", "group":"lower_group", "value":"blue"}  [jeans]{"entity":"pants", "group":"lower_group", "value":"pants"} and [with]{"entity":"is_with", "group":"bag_group", "value":"true"} a [sack]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - I'm on the lookout for a person [with no]{"entity":"is_with", "group":"bag_group", "value":"false"} [case]{"entity":"bag", "group":"bag_group", "value":"bag"} and [dressing on]{"entity":"is_with", "group":"upper_group", "value":"true"} [pink]{"entity":"color", "group":"upper_group", "value":"pink"}  [top]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - I'm hoping to find a person [dresses in]{"entity":"is_with", "group":"bag_group", "value":"true"} [bag]{"entity":"bag", "group":"bag_group", "value":"bag"} and [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [brown]{"entity":"color", "group":"upper_group", "value":"brown"} [tee]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - Did you see someone [doesn't using]{"entity":"is_with", "group":"bag_group", "value":"false"} a [backpack]{"entity":"bag", "group":"bag_group", "value":"bag"} and [haves on]{"entity":"is_with", "group":"upper_group", "value":"true"} [yellow]{"entity":"color", "group":"upper_group", "value":"yellow"} [T-shirt]{"entity":"shirt", "group":"upper_group", "value":"shirt"}?
+    - I'm trying to locate someone [wearing]{"entity":"is_with", "group":"upper_group", "value":"true"} [orange]{"entity":"color", "group":"upper_group", "value":"orange"} [T-shirt]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and a [with]{"entity":"is_with", "group":"bag_group", "value":"true"} [case]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - Can you find me a person [does not have on]{"entity":"is_with", "group":"upper_group", "value":"false"} [green]{"entity":"color", "group":"upper_group", "value":"green"} [oxford]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [having on]{"entity":"is_with", "group":"bag_group", "value":"true"} a [handbag]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - I'm seeking someone [using]{"entity":"is_with", "group":"upper_group", "value":"true"} [blue]{"entity":"color", "group":"upper_group", "value":"blue"} [bottom-up]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [with]{"entity":"is_with", "group":"bag_group", "value":"true"} a [luggage]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - I'm interested in searching an [old man]{"entity":"gender", "value":"male"} who [doesn't wear]{"entity":"is_with", "group":"upper_group", "value":"false"} [blue]{"entity":"color", "group":"upper_group", "value":"blue"} [T-shirt]{"entity":"shirt", "group":"upper_group", "value":"shirt"}.
+    - Can you find a [nephew]{"entity":"gender", "value":"male"} [without]{"entity":"is_with", "group":"bag_group", "value":"false"}
+    - Do you know if a person [with]{"entity":"is_with", "group":"hat_group", "value":"true"} [hat]{"entity":"hat", "group":"hat_group"} is present?
+    - Can you find my [sister]{"entity":"gender", "value":"female"}? She [wears]{"entity":"is_with", "group":"lower_group", "value":"true"} [red]{"entity":"color", "group":"lower_group", "value":"red"} [sweatpants]{"entity":"pants", "group":"lower_group", "value":"pants"}.
+    - Have you seen an individual [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [green]{"entity":"color", "group":"upper_group", "value":"green"} [jacket]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [having on]{"entity":"is_with", "group":"bag_group", "value":"true"} a [purse]{"entity":"bag", "group":"bag_group", "value":"bag"}.
+    - Can you find me a person [without]{"entity":"is_with", "group":"upper_group", "value":"false"} [green]{"entity":"color", "group":"upper_group", "value":"green"} [oxford]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [putting on]{"entity":"is_with", "group":"bag_group", "value":"true"} a [tote bag]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - I'm seeking someone [using]{"entity":"is_with", "group":"upper_group", "value":"true"} [blue]{"entity":"color", "group":"upper_group", "value":"blue"} [bottom-up]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [with]{"entity":"is_with", "group":"bag_group", "value":"true"} a [luggage]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - I'm interested in searching an [old man]{"entity":"gender", "value":"male"} who [doesn't wear]{"entity":"is_with", "group":"upper_group", "value":"false"} [blue]{"entity":"color", "group":"upper_group", "value":"blue"} [T-shirt]{"entity":"shirt", "group":"upper_group", "value":"shirt"}.
+    - Can you find a [old man]{"entity":"gender", "value":"male"} [not using]{"entity":"is_with", "group":"bag_group", "value":"false"} a [bag]{"entity":"bag", "group":"bag_group"}
+    - Can you find my [sister]{"entity":"gender", "value":"female"}? She [wears]{"entity":"is_with", "group":"lower_group", "value":"true"} [red]{"entity":"color", "group":"lower_group", "value":"red"} [sweatpants]{"entity":"pants", "group":"lower_group", "value":"pants"}.
+    - Have you seen an individual [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [green]{"entity":"color", "group":"upper_group", "value":"green"} [shirt]{"entity":"shirt", "group":"upper_group"} and [wearing]{"entity":"is_with", "group":"bag_group", "value":"true"} a [purse]{"entity":"bag", "group":"bag_group", "value":"bag"}.
+    - I'm trying to find my [dad]{"entity":"gender", "value":"male"}. He [has]{"entity":"is_with", "group":"hat_group", "value":"true"} a [beret]{"entity":"hat", "group":"hat_group"}
+    - I'm trying to find my [son]{"entity":"gender", "value":"male"} [with]{"entity":"is_with", "group":"bag_group", "value":"true"} [knapsack]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - Have you seen a [miss]{"entity":"gender", "value":"female"} [doesn't dress]{"entity":"is_with", "group":"lower_group", "value":"false"} [green]{"entity":"color", "group":"lower_group", "value":"green"} [corduroys]{"entity":"pants", "group":"lower_group", "value":"pants"}.
+    - is there someone [takes]{"entity":"is_with", "group":"bag_group", "value":"true"} [knaspack]{"entity":"bag", "group":"bag_group", "value":"bag"} and [wearing]{"entity":"is_with", "group":"lower_group", "value":"true"} [orange]{"entity":"color", "group":"lower_group", "value":"orange"} [pants]{"entity":"pants", "group":"lower_group"}
+    
+    - is there anyone [with out]{"entity":"is_with", "group":"lower_group", "value":"false"} [green]{"entity":"color", "group":"lower_group", "value":"green"} [jeans]{"entity":"pants", "group":"lower_group", "value":"pants"} and [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [blue]{"entity":"color", "group":"upper_group", "value":"blue"} [polo]{"entity":"shirt", "group":"upper_group", "value":"shirt"}?
+    - is there somebody [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [blue]{"entity":"color", "group":"upper_group", "value":"blue"} [polo]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [without]{"entity":"is_with", "group":"lower_group", "value":"false"} [green]{"entity":"color", "group":"lower_group", "value":"green"} [jeans]{"entity":"pants", "group":"lower_group", "value":"pants"}?
+    - have you seen someone [being wrapped]{"entity":"is_with", "group":"lower_group", "value":"true"} [pink]{"entity":"color", "group":"lower_group", "value":"pink"} [chinos]{"entity":"pants", "group":"lower_group", "value":"pants"} and [not having]{"entity":"is_with", "group":"upper_group", "value":"false"} [red]{"entity":"color", "group":"upper_group", "value":"red"} [polo]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - i am trying to locate a one [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [purple]{"entity":"color", "group":"upper_group", "value":"purple"} [pullover]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [no]{"entity":"is_with", "group":"lower_group", "value":"false"} [brown]{"entity":"color", "group":"lower_group", "value":"brown"} [leggings]{"entity":"pants", "group":"lower_group", "value":"pants"} 
+    - do you seen someone [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [green]{"entity":"color", "group":"lower_group", "value":"green"} [pants]{"entity":"pants", "group":"lower_group", "value":"pants"} and [no]{"entity":"is_with", "group":"upper_group", "value":"false"} [purple]{"entity":"color", "group":"upper_group", "value":"purple"} [t-shirt]{"entity":"shirt", "group":"upper_group", "value":"shirt"}?
+    - i am trying to locate a person [no]{"entity":"is_with", "group":"lower_group", "value":"false"} [orange]{"entity":"color", "group":"lower_group", "value":"orange"} [sweatpants]{"entity":"pants", "group":"lower_group", "value":"pants"} and [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [red]{"entity":"color", "group":"upper_group", "value":"red"} [pullover]{"entity":"shirt", "group":"upper_group", "value":"shirt"}.
+    - do you seen an individual that [doesn't have]{"entity":"is_with", "group":"lower_group", "value":"false"} [black]{"entity":"color", "group":"lower_group", "value":"black"} [jeans]{"entity":"pants", "group":"lower_group", "value":"pants"} and [not wear]{"entity":"is_with", "group":"upper_group", "value":"false"} [brown]{"entity":"color", "group":"upper_group", "value":"brown"} [sweater]{"entity":"shirt", "group":"upper_group", "value":"shirt"}.
+    - do you seen an individual that [doesn't have]{"entity":"is_with", "group":"upper_group", "value":"false"} [brown]{"entity":"color", "group":"upper_group", "value":"brown"} [sweater]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [not wearing]{"entity":"is_with", "group":"lower_group", "value":"false"} [black]{"entity":"color", "group":"lower_group", "value":"black"} [jeans]{"entity":"pants", "group":"lower_group", "value":"pants"}.
+    - i am trying to locate a person who is [puts on]{"entity":"is_with", "group":"upper_group", "value":"true"} [red]{"entity":"color", "group":"upper_group", "value":"red"} [top]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [no]{"entity":"is_with", "group":"lower_group", "value":"false"} [brown]{"entity":"color", "group":"lower_group", "value":"brown"} [khakis]{"entity":"pants", "group":"lower_group", "value":"pants"} 
+    - have you seen [mother-in-law]"entity":"gender", "value":"female"} [does not wear]{"entity":"is_with", "group":"bag_group", "value":"false"} a [satchel]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - i hope to find an individal who [not bring]{"entity":"is_with", "group":"bag_group", "value":"false"} a [knaspack]{"entity":"bag", "group":"bag_group", "value":"bag"} and [wearing]{"entity":"is_with", "group":"hat_group", "value":"true"} a [cap]{"entity":"hat", "group":"hat_group", "value":"hat"} in the shopping mall
+    - i hope to find an individal [with]{"entity":"is_with", "group":"hat_group", "value":"true"} a [cap]{"entity":"hat", "group":"hat_group", "value":"hat"} and [not dress in]{"entity":"is_with", "group":"bag_group", "value":"false"} a [sack]{"entity":"bag", "group":"bag_group", "value":"bag"} mall.
+    - i hope to find a human being who [takes]{"entity":"is_with", "group":"bag_group", "value":"true"} a [bag]{"entity":"bag", "group":"bag_group"} and [not]{"entity":"is_with", "group":"hat_group", "value":"false"} a [topper]{"entity":"hat", "group":"hat_group", "value":"hat"} in the shopping mall
+    - i m look for a person who is [not carrying]{"entity":"is_with", "group":"bag_group", "value":"false"} a [purse]{"entity":"bag", "group":"bag_group", "value":"bag"} and [with]{"entity":"is_with", "group":"hat_group", "value":"true"} a [cap]{"entity":"hat", "group":"hat_group", "value":"hat"} in the shopping center
+    - i m look for a one who is [does not have]{"entity":"is_with", "group":"hat_group", "value":"false"} a [sombrero]{"entity":"hat", "group":"hat_group", "value":"hat"} and [taking]{"entity":"is_with", "group":"bag_group", "value":"true"} a [purse]{"entity":"bag", "group":"bag_group", "value":"bag"} in the shopping center
+    - i'm search a peson who [doesn't wearing]{"entity":"is_with", "group":"lower_group", "value":"false"} [white]{"entity":"color", "group":"lower_group", "value":"white"} [chinos]{"entity":"pants", "group":"lower_group", "value":"pants"} and [bring]{"entity":"is_with", "group":"hat_group", "value":"true"} a [hat]{"entity":"hat", "group":"hat_group"}.
+    - i want to find a human being who [with]{"entity":"is_with", "group":"hat_group", "value":"true"} a [headger]{"entity":"hat", "group":"hat_group", "value":"hat"} and [with no]{"entity":"is_with", "group":"lower_group", "value":"false"} [orange]{"entity":"color", "group":"lower_group", "value":"orange"} [trousers]{"entity":"pants", "group":"lower_group", "value":"pants"} in the shopping mall
+    - is there a human being [with]{"entity":"is_with", "group":"bag_group", "value":"true"} a [luggage]{"entity":"bag", "group":"bag_group", "value":"bag"} and [not having]{"entity":"is_with", "group":"lower_group", "value":"false"} [grey]{"entity":"color", "group":"lower_group", "value":"grey"} [sweatpants]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - is there a human being [bringing]{"entity":"is_with", "group":"bag_group", "value":"true"} a [tote bag]{"entity":"bag", "group":"bag_group", "value":"bag"} and [has not]{"entity":"is_with", "group":"upper_group", "value":"false"} [orange]{"entity":"color", "group":"upper_group", "value":"orange"} [top]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - have you seen a person [with]{"entity":"is_with", "group":"hat_group", "value":"true"} [beanie]{"entity":"hat", "group":"hat_group", "value":"hat"} and [not]{"entity":"is_with", "group":"lower_group", "value":"false"} [black]{"entity":"color", "group":"lower_group", "value":"black"} [pants]{"entity":"pants", "group":"lower_group"}.
+    - i am look for a human being who [carry]{"entity":"is_with", "group":"bag_group", "value":"true"} a [carryall]{"entity":"bag", "group":"bag_group", "value":"bag"} and [not wearing]{"entity":"is_with", "group":"upper_group", "value":"false"} [white]{"entity":"color", "group":"upper_group", "value":"white"} [cardigan]{"entity":"shirt", "group":"upper_group", "value":"shirt"} in the shopping mall
+    - do you see an individual [having]{"entity":"is_with", "group":"hat_group", "value":"true"} a [fedora]{"entity":"hat", "group":"hat_group", "value":"hat"} and [not having]{"entity":"is_with", "group":"upper_group", "value":"false"} [purple]{"entity":"color", "group":"upper_group", "value":"purple"} [blouse]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - i am look for a human being [with]{"entity":"is_with", "group":"bag_group", "value":"true"} a [pouch]{"entity":"bag", "group":"bag_group", "value":"bag"} and [without]{"entity":"is_with", "group":"upper_group", "value":"false"} [black]{"entity":"color", "group":"upper_group", "value":"black"} [cardigan]{"entity":"shirt", "group":"upper_group", "value":"shirt"} in the shopping mall
+    - have you seen a person [wearing]{"entity":"is_with", "group":"bag_group", "value":"true"} [backpack]{"entity":"bag", "group":"bag_group", "value":"bag"} and [not dressing in]{"entity":"is_with", "group":"lower_group", "value":"false"} [red]{"entity":"color", "group":"lower_group", "value":"red"} [tights]{"entity":"pants", "group":"lower_group", "value":"pants"}.
+    - i hope to find an individal who is [bringing]{"entity":"is_with", "group":"bag_group", "value":"true"} a [rucksack]{"entity":"bag", "group":"bag_group", "value":"bag"} and [not wearing]{"entity":"is_with", "group":"hat_group", "value":"false"} a [headgear]{"entity":"hat", "group":"hat_group", "value":"hat"}.
+    - is there someone [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [brown]{"entity":"color", "group":"upper_group", "value":"brown"} [polo]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [not]{"entity":"is_with", "group":"lower_group", "value":"false"} [orange]{"entity":"color", "group":"lower_group", "value":"orange"} [skirt]{"entity":"pants", "group":"lower_group", "value":"pants"}?
+    - have you seen someone [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [grey]{"entity":"color", "group":"lower_group", "value":"grey"} [chinos]{"entity":"pants", "group":"lower_group", "value":"pants"} and [without]{"entity":"is_with", "group":"upper_group", "value":"false"} [red]{"entity":"color", "group":"upper_group", "value":"red"} [sweater]{"entity":"shirt", "group":"upper_group", "value":"shirt"}?
+    - have you seen an individual [having]{"entity":"is_with", "group":"lower_group", "value":"true"} [pink]{"entity":"color", "group":"lower_group", "value":"pink"} [khakis]{"entity":"pants", "group":"lower_group", "value":"pants"} and [no]{"entity":"is_with", "group":"upper_group", "value":"false"} [green]{"entity":"color", "group":"upper_group", "value":"green"} [sweater]{"entity":"shirt", "group":"upper_group", "value":"shirt"}?
+    - i am search a human being [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [blue]{"entity":"color", "group":"upper_group", "value":"blue"} [polo]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [white]{"entity":"color", "group":"lower_group", "value":"white"} [jeans]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - is there a person [not having on]{"entity":"is_with", "group":"bag_group", "value":"false"} [tote bag]{"entity":"bag", "group":"bag_group", "value":"bag"} and [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [red]{"entity":"color", "group":"lower_group", "value":"red"} [chinos]{"entity":"pants", "group":"lower_group", "value":"pants"}?
+    - have you seen an individual [without]{"entity":"is_with", "group":"hat_group", "value":"false"} a [hat]{"entity":"bag", "group":"hat_group"} and [without]{"entity":"is_with", "group":"upper_group", "value":"false"} a [black]{"entity":"color", "group":"upper_group", "value":"black"} [bluse]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - do u see a being who [doesn't wear]{"entity":"is_with", "group":"bag_group", "value":"false"} a [purse]{"entity":"bag", "group":"bag_group", "value":"bag"} and [does not have]{"entity":"is_with", "group":"hat_group", "value":"false"} a [bonnet]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - is there an individual [does not bring]{"entity":"is_with", "group":"bag_group", "value":"false"} a [knaspack]{"entity":"bag", "group":"bag_group", "value":"bag"} and [not wear]{"entity":"is_with", "group":"upper_group", "value":"false"} [blue]{"entity":"color", "group":"upper_group", "value":"blue"} [jersey]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - i want to find a person [not having]{"entity":"is_with", "group":"bag_group", "value":"false"} [satchel]{"entity":"bag", "group":"bag_group", "value":"bag"} and [not]{"entity":"is_with", "group":"lower_group", "value":"false"} [purple]{"entity":"color", "group":"lower_group", "value":"purple"} [chinos]{"entity":"pants", "group":"lower_group", "value":"pants"}.
+    - i'm interested in finding a human being [not putting on]{"entity":"is_with", "group":"upper_group", "value":"false"} [white]{"entity":"color", "group":"upper_group", "value":"white"} [sweatshirts]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [not carry]{"entity":"is_with", "group":"bag_group", "value":"false"} a [handbag]{"entity":"bag", "group":"bag_group", "value":"bag"} in the shopping center
+    - he is findning a person [does not bring]{"entity":"is_with", "group":"bag_group", "value":"false"} a [carrier]{"entity":"bag", "group":"bag_group", "value":"bag"} and [not have]{"entity":"is_with", "group":"hat_group", "value":"false"} a [beret]{"entity":"hat", "group":"hat_group", "value":"hat"}  
+    - she is looking for an individual [not having]{"entity":"is_with", "group":"hat_group", "value":"false"} a [headgear]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - is there a person [doesn't put]{"entity":"is_with", "group":"upper_group", "value":"false"} [yellow]{"entity":"color", "group":"upper_group", "value":"yellow"} [pullover]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [not have]{"entity":"is_with", "group":"hat_group", "value":"false"} a [sombrero]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - is there a somebody [doesn't put]{"entity":"is_with", "group":"upper_group", "value":"false"} [red]{"entity":"color", "group":"upper_group", "value":"red"} [sweater]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [doesn't wear]{"entity":"is_with", "group":"bag_group", "value":"false"} a [luggage]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - i'm interested in finding a human being [not putting on]{"entity":"is_with", "group":"upper_group", "value":"false"} [grey]{"entity":"color", "group":"upper_group", "value":"grey"} [sweatshirts]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [no]{"entity":"is_with", "group":"lower_group", "value":"false"} [brown]{"entity":"color", "group":"lower_group", "value":"brown"} [skirt]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - i'm interested in finding a human being [not putting on]{"entity":"is_with", "group":"lower_group", "value":"false"} [brown]{"entity":"color", "group":"lower_group", "value":"brown"} [skirt]{"entity":"pants", "group":"lower_group", "value":"pants"} and [not]{"entity":"is_with", "group":"upper_group", "value":"false"} [pink]{"entity":"color", "group":"upper_group", "value":"pink"} [coat]{"entity":"shirt", "group":"upper_group", "value":"shirt"} 
+    - Can you search for me a person [not wear]{"entity":"is_with", "group":"hat_group", "value":"false"} a [beret]{"entity":"hat", "group":"hat_group", "value":"hat"} and [not have]{"entity":"is_with", "group":"upper_group", "value":"false"} [yellow]{"entity":"color", "group":"upper_group", "value":"yellow"} [tunic]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - do u know if a person [doesn't take]{"entity":"is_with", "group":"bag_group", "value":"false"} a [tot bag]{"entity":"bag", "group":"bag_group", "value":"bag"} and [not]{"entity":"is_with", "group":"upper_group", "value":"false"} a [orange]{"entity":"color", "group":"upper_group", "value":"orange"} [tee]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - she is looking for an individual [not wear]{"entity":"is_with", "group":"hat_group", "value":"false"} a [fedora]{"entity":"hat", "group":"hat_group", "value":"hat"} and [not wears]{"entity":"is_with", "group":"upper_group", "value":"false"} [green]{"entity":"color", "group":"upper_group", "value":"green"} [pullover]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - hi, have you seen a person [with no]{"entity":"is_with", "group":"bag_group", "value":"false"} [bag]{"entity":"bag", "group":"bag_group"}  and [not has]{"entity":"is_with", "group":"lower_group", "value":"false"} [brown]{"entity":"color", "group":"lower_group", "value":"brown"} [trousers]{"entity":"pants", "group":"lower_group", "value":"pants"}.
+    - do you know if an individual [not have]{"entity":"is_with", "group":"upper_group", "value":"false"} [red]{"entity":"color", "group":"upper_group", "value":"red"} [coat]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [bringing]{"entity":"is_with", "group":"bag_group", "value":"true"} [sack]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - i'm interested in finding a human being [not putting on]{"entity":"is_with", "group":"lower_group", "value":"false"} [pink]{"entity":"color", "group":"lower_group", "value":"pink"} [corduroys]{"entity":"pants", "group":"lower_group", "value":"pants"} and [carry]{"entity":"is_with", "group":"bag_group", "value":"true"} [rucksack]{"entity":"bag", "group":"bag_group", "value":"bag"} in the shopping center
+     
+    - have you find someone [with]{"entity":"is_with", "group":"upper_group", "value":"true"} a [black]{"entity":"color", "group":"upper_group", "value":"black"} [suit]{"entity":"shirt", "group":"upper_group"}
+    - have you find a person [wearing]{"entity":"is_with", "group":"upper_group", "value":"true"} [white]{"entity":"color", "group":"upper_group", "value":"white"} [dress]{"entity":"shirt", "group":"upper_group", "value":"suit"} and [with]{"entity":"is_with", "group":"hat_group", "value":"true"} [hat]{"entity":"hat", "group":"hat_group"}
+    - is there an individual [having]{"entity":"is_with", "group":"upper_group", "value":"true"} [grey]{"entity":"color", "group":"upper_group", "value":"grey"} [suit and tie]{"entity":"shirt", "group":"upper_group", "value":"suit"} and [bring]{"entity":"is_with", "group":"bag_group", "value":"true"} [backpack]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - do you know if someone [has]{"entity":"is_with", "group":"upper_group", "value":"true"} [blue]{"entity":"color", "group":"upper_group", "value":"blue"} [clothing]{"entity":"shirt", "group":"upper_group", "value":"suit"}.
+    - have you find someone [with]{"entity":"is_with", "group":"lower_group", "value":"true"} a [brown]{"entity":"color", "group":"lower_group", "value":"brown"} [suit]{"entity":"pants", "group":"lower_group", "value":"suit"}
+    - have you find a person [wearing]{"entity":"is_with", "group":"lower_group", "value":"true"} [blue]{"entity":"color", "group":"lower_group", "value":"blue"} [dress]{"entity":"pants", "group":"lower_group", "value":"suit"} and [with]{"entity":"is_with", "group":"hat_group", "value":"true"} [headgear]{"entity":"hat", "group":"hat_group"}
+    - is there an individual [having]{"entity":"is_with", "group":"lower_group", "value":"true"} [orange]{"entity":"color", "group":"lower_group", "value":"orange"} [suit and tie]{"entity":"pants", "group":"lower_group", "value":"suit"} and [carry]{"entity":"is_with", "group":"bag_group", "value":"true"} [luggage]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - do you know if someone [has]{"entity":"is_with", "group":"lower_group", "value":"true"} [pink]{"entity":"color", "group":"lower_group", "value":"pink"} [duds]{"entity":"pants", "group":"lower_group", "value":"suit"}.
+    - I'd like to find a person  [with]{"entity":"is_with", "group":"hat_group", "value":"true"} [hat]"entity":"hat", "group":"hat_group"} and [dresses]{"entity":"is_with", "group":"lower_group", "value":"true"} [brown]{"entity":"color", "group":"lower_group", "value":"brown"} [suit]{"entity":"pants", "group":"lower_group"}.
+    - I'd like to find an individual [brings]{"entity":"is_with", "group":"bag_group", "value":"true"} [purse]{"entity":"bag", "group":"bag_group", "value":"bag"} and [wears]{"entity":"is_with", "group":"upper_group", "value":"true"} [purple]{"entity":"color", "group":"upper_group", "value":"purple"} [suit and tie]{"entity":"shirt", "group":"upper_group", "value":"suit"}.
+    - I'm look for a individual [having]{"entity":"is_with", "group":"hat_group", "value":"true"} [fedora]{"entity":"hat", "group":"hat_group", "value":"hat"} and [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [yellow]{"entity":"color", "group":"upper_group", "value":"yellow"} [suit and tie]{"entity":"shirt", "group":"upper_group", "value":"suit"}
+    - im searching a humain being [has]{"entity":"is_with", "group":"hat_group", "value":"true"} [topper]{"entity":"hat", "group":"hat_group", "value":"hat"} and [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [green]{"entity":"color", "group":"lower_group", "value":"green"} [dress]{"entity":"pants", "group":"lower_group", "value":"suit"}
+    - is ther a peson [takes]{"entity":"is_with", "group":"bag_group", "value":"true"} [tote bag]{"entity":"bag", "group":"bag_group", "value":"bag"} and [has]{"entity":"is_with", "group":"upper_group", "value":"true"} [red]{"entity":"color", "group":"upper_group", "value":"red"} [clothing]{"entity":"shirt", "group":"upper_group", "value":"suit"}
+    - Can you find someone [carrys]{"entity":"is_with", "group":"bag_group", "value":"true"} [purse]{"entity":"bag", "group":"bag_group", "value":"bag"} [wearing]{"entity":"is_with", "group":"lower_group", "value":"true"} [pink]{"entity":"color", "group":"upper_group", "value":"pink"} [clothing]{"entity":"shirt", "group":"upper_group", "value":"suit"}.
+    - Can you find a [man]{"entity":"gender", "value":"male"}? He [hasn't]{"entity":"is_with", "group":"lower_group", "value":"false"} a [orange]{"entity":"color", "group":"lower_group", "value":"orange"} [clothing]{"entity":"pants", "group":"lower_group", "value":"suit"}.
+    - Can you find a [madam]{"entity":"gender", "value":"female"}? She [doesn't have]{"entity":"is_with", "group":"upper_group", "value":"false"} a [red]{"entity":"color", "group":"upper_group", "value":"red"} [dress]{"entity":"shirt", "group":"upper_group", "value":"suit"}.
+    - i am interested in finding a human [with no]{"entity":"is_with", "group":"upper_group", "value":"false"} [pink]{"entity":"color", "group":"upper_group", "value":"pink"} [suit and tie]{"entity":"shirt", "group":"upper_group", "value":"suit"} and [no]{"entity":"is_with", "group":"hat_group", "value":"false"} [hat]{"entity":"hat", "group":"hat_group"}
+    - do you know if a individual [not wear]{"entity":"is_with", "group":"lower_group", "value":"false"} [brown]{"entity":"color", "group":"lower_group", "value":"brown"} [suit]{"entity":"pants", "group":"lower_group", "value":"suit"} and [not have]{"entity":"is_with", "group":"hat_group", "value":"false"} [topper]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - i am interested in finding a human [with no]{"entity":"is_with", "group":"upper_group", "value":"false"} [purple]{"entity":"color", "group":"upper_group", "value":"purple"} [dress]{"entity":"shirt", "group":"upper_group", "value":"suit"} and [no]{"entity":"is_with", "group":"bag_group", "value":"false"} [bag]{"entity":"bag", "group":"bag_group"}
+    - Can you find a [madam]{"entity":"gender", "value":"female"}? She [doesn't have]{"entity":"is_with", "group":"upper_group", "value":"false"} a [red]{"entity":"color", "group":"upper_group", "value":"red"} [duds]{"entity":"shirt", "group":"upper_group", "value":"suit"}.
+    - i am interested in finding a human [with no]{"entity":"is_with", "group":"lower_group", "value":"false"} [grey]{"entity":"color", "group":"lower_group", "value":"grey"} [dress]{"entity":"pants", "group":"lower_group", "value":"suit"} and [no]{"entity":"is_with", "group":"bag_group", "value":"false"} [handbag]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - i'm looks for a persona [don't have]{"entity":"is_with", "group":"hat_group", "value":"false"} [cap]{"entity":"hat", "group":"hat_group", "value":"hat"} and [not]{"entity":"is_with", "group":"lower_group", "value":"false"} [white]{"entity":"color", "group":"lower_group", "value":"white"} [clothing]{"entity":"pants", "group":"lower_group", "value":"suit"}
+    - have u seen a individual [not dress]{"entity":"is_with", "group":"hat_group", "value":"false"} [fedora]{"entity":"hat", "group":"hat_group", "value":"hat"} and [with out]{"entity":"is_with", "group":"upper_group", "value":"false"} [yellow]{"entity":"color", "group":"upper_group", "value":"yellow"} [duds]{"entity":"shirt", "group":"upper_group", "value":"suit"}
+    - i am interested in finding a human [no]{"entity":"is_with", "group":"bag_group", "value":"false"} [satchel]{"entity":"bag", "group":"bag_group", "value":"bag"} and [no]{"entity":"is_with", "group":"upper_group", "value":"false"} [green]{"entity":"color", "group":"upper_group", "value":"green"} [suit and ti]{"entity":"shirt", "group":"upper_group", "value":"suit"} 
+    - i am interested in finding a person [not]{"entity":"is_with", "group":"bag_group", "value":"false"} [purse]{"entity":"bag", "group":"bag_group", "value":"bag"} and [with out]{"entity":"is_with", "group":"lower_group", "value":"false"} [brown]{"entity":"color", "group":"lower_group", "value":"brown"} [suit and ti]{"entity":"pants", "group":"lower_group", "value":"suit"}
+    - is there someone [with out]{"entity":"is_with", "group":"lower_group", "value":"false"} [blue]{"entity":"color", "group":"lower_group", "value":"blue"} [dress]{"entity":"pants", "group":"lower_group", "value":"suit"}
+    - i want to find someone [not putting on]{"entity":"is_with", "group":"upper_group", "value":"false"} [red]{"entity":"color", "group":"upper_group", "value":"red"} [clothing]{"entity":"shirt", "group":"upper_group"}
+    - i am look for someone [wit]{"entity":"is_with", "group":"upper_group", "value":"true"} [wait]{"entity":"color", "group":"upper_group", "value":"white"} [scirt]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - a person [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [green]{"entity":"color", "group":"upper_group", "value":"green"} [clothing]{"entity":"shirt", "group":"upper_group", "value":"suit"} and [not]{"entity":"is_with", "group":"bag_group", "value":"false"} [carrier]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - someone [wears]{"entity":"is_with", "group":"lower_group", "value":"true"} [yellow]{"entity":"color", "group":"lower_group", "value":"yellow"} [duds]{"entity":"pants", "group":"lower_group", "value":"suit"} and [not take]{"entity":"is_with", "group":"bag_group", "value":"false"} [luggage]{"entity":"bag", "group":"bag_group", "value":"bag"} 
+    - i want to find he who [weaars]{"entity":"is_with", "group":"upper_group", "value":"true"} [white]{"entity":"color", "group":"upper_group", "value":"white"} [suit]{"entity":"shirt", "group":"upper_group"} and [not haveee]{"entity":"is_with", "group":"hat_group", "value":"false"} [headgear]{"entity":"hat", "group":"hat_group", "value":"hat"} 
+    - i want to find he who [weaars]{"entity":"is_with", "group":"lower_group", "value":"true"} [blue]{"entity":"color", "group":"lower_group", "value":"blue"} [suit and tie]{"entity":"pants", "group":"lower_group", "value":"suit"} and [with out]{"entity":"is_with", "group":"hat_group", "value":"false"} [bonnet]{"entity":"hat", "group":"hat_group", "value":"hat"} 
+    - i am interesting to finddd a pers [have]{"entity":"is_with", "group":"hat_group", "value":"true"} [topper]{"entity":"hat", "group":"hat_group", "value":"hat"} and [not have]{"entity":"is_with", "group":"lower_group", "value":"false"} [purple]{"entity":"color", "group":"lower_group", "value":"purple"} [duds]{"entity":"pants", "group":"lower_group", "value":"suit"}
+    - i am looook forrr a person [has]{"entity":"is_with", "group":"hat_group", "value":"true"} [beret]{"entity":"hat", "group":"hat_group", "value":"hat"} and [with out]{"entity":"is_with", "group":"upper_group", "value":"false"} [grey]{"entity":"color", "group":"upper_group", "value":"grey"} [suit]{"entity":"shirt", "group":"upper_group"}
+    - do you know a persona [carrys]{"entity":"is_with", "group":"bag_group", "value":"true"} [rucksack]{"entity":"bag", "group":"bag_group", "value":"bag"} and [not puts]{"entity":"is_with", "group":"lower_group", "value":"false"} [orange]{"entity":"color", "group":"lower_group", "value":"orange"} [clothing]{"entity":"pants", "group":"lower_group", "value":"suit"}
+    - can you find a individual [bringss]{"entity":"is_with", "group":"bag_group", "value":"true"} [pouch]{"entity":"bag", "group":"bag_group", "value":"bag"} and [not wearig]{"entity":"is_with", "group":"lower_group", "value":"false"} [orange]{"entity":"color", "group":"lower_group", "value":"orange"} [cloting]{"entity":"pants", "group":"lower_group", "value":"suit"}
+    
+    - a person [with no]{"entity":"is_with", "group":"upper_group", "value":"false"} [green]{"entity":"color", "group":"upper_group", "value":"green"} [clothing]{"entity":"shirt", "group":"upper_group", "value":"suit"} and [has]{"entity":"is_with", "group":"bag_group", "value":"true"} [carrier]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - someone [not wears]{"entity":"is_with", "group":"lower_group", "value":"false"} [grey]{"entity":"color", "group":"lower_group", "value":"grey"} [duds]{"entity":"pants", "group":"lower_group", "value":"suit"} and [takes]{"entity":"is_with", "group":"bag_group", "value":"true"} [luggage]{"entity":"bag", "group":"bag_group", "value":"bag"} 
+    - i want to find he who [with out]{"entity":"is_with", "group":"upper_group", "value":"false"} [white]{"entity":"color", "group":"upper_group", "value":"white"} [suit]{"entity":"shirt", "group":"upper_group"} and [haveee]{"entity":"is_with", "group":"hat_group", "value":"true"} [fedora]{"entity":"hat", "group":"hat_group", "value":"hat"} 
+    - i want to find he who [not weaaring]{"entity":"is_with", "group":"lower_group", "value":"false"} [orange]{"entity":"color", "group":"lower_group", "value":"orange"} [suit and tie]{"entity":"pants", "group":"lower_group", "value":"suit"} and [have]{"entity":"is_with", "group":"hat_group", "value":"true"} [bonnet]{"entity":"hat", "group":"hat_group", "value":"hat"} 
+    - i am interesting to finddd a pers [not has]{"entity":"is_with", "group":"hat_group", "value":"false"} [topper]{"entity":"hat", "group":"hat_group", "value":"hat"} and [wear]{"entity":"is_with", "group":"lower_group", "value":"true"} [purple]{"entity":"color", "group":"lower_group", "value":"purple"} [dress]{"entity":"pants", "group":"lower_group", "value":"suit"}
+    - i am looook forrr a person [has not]{"entity":"is_with", "group":"hat_group", "value":"false"} [beret]{"entity":"hat", "group":"hat_group", "value":"hat"} and [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [grey]{"entity":"color", "group":"upper_group", "value":"grey"} [suit]{"entity":"shirt", "group":"upper_group"}
+    - do you know a persona [not carry]{"entity":"is_with", "group":"bag_group", "value":"false"} [rucksack]{"entity":"bag", "group":"bag_group", "value":"bag"} and [puts on]{"entity":"is_with", "group":"lower_group", "value":"true"} [orange]{"entity":"color", "group":"lower_group", "value":"orange"} [clothing]{"entity":"pants", "group":"lower_group", "value":"suit"}
+    - can you find a individual [do not bringss]{"entity":"is_with", "group":"bag_group", "value":"false"} [pouch]{"entity":"bag", "group":"bag_group", "value":"bag"} and [wearig]{"entity":"is_with", "group":"lower_group", "value":"true"} [yellow]{"entity":"color", "group":"lower_group", "value":"yellow"} [cloting]{"entity":"pants", "group":"lower_group", "value":"suit"}
+    
+    - I am interested in finding a person [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [white]{"entity":"color", "group":"lower_group", "value":"white"} [pants]{"entity":"pants", "group":"lower_group", "value":"pants"}.
+    - I'm looking for a person who [doesn't wear]{"entity":"is_with", "group":"bag_group", "value":"false"} [carryall]{"entity":"bag", "group":"bag_group", "value":"bag"} and [has on]{"entity":"is_with", "group":"upper_group", "value":"true"} [blue]{"entity":"color", "group":"upper_group", "value":"blue"} [pullover]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - I'm looking for a somebody who [does not wear]{"entity":"is_with", "group":"bag_group", "value":"false"} [luggage]{"entity":"bag", "group":"bag_group", "value":"bag"} and [puts on]{"entity":"is_with", "group":"lower_group", "value":"true"} [blue]{"entity":"color", "group":"lower_group", "value":"blue"} [corduroys]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - I'm looking for a person who [doesn't have]{"entity":"is_with", "group":"hat_group", "value":"false"} [topper]{"entity":"hat", "group":"hat_group", "value":"hat"} and [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [black]{"entity":"color", "group":"upper_group", "value":"black"} [pullover]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - I'm looking for a one who [doesn't wear]{"entity":"is_with", "group":"hat_group", "value":"false"} [cap]{"entity":"hat", "group":"hat_group", "value":"hat"} and [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [purple]{"entity":"color", "group":"lower_group", "value":"purple"} [corduroys]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - I'm lookout for someone [with]{"entity":"is_with", "group":"hat_group", "value":"true"} an [hat]{"entity":"hat", "group":"hat_group"} and [without]{"entity":"is_with", "group":"bag_group", "value":"false"} [purse]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - I'm lookout for a [guy]{"entity":"gender", "value":"male"}.
+    - I'm interested in finding someone [not putting on]{"entity":"is_with", "group":"hat_group", "value":"false"} [beret]{"entity":"hat", "group":"hat_group", "value":"hat"} and [puts on]{"entity":"is_with", "group":"lower_group", "value":"true"} [black]{"entity":"color", "group":"lower_group", "value":"black"} [jeans]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - I want to find a person [without]{"entity":"is_with", "group":"hat_group", "value":"false"} [hat]{"entity":"hat", "group":"hat_group"} and [wearing]{"entity":"is_with", "group":"lower_group", "value":"true"} [red]{"entity":"color", "group":"lower_group", "value":"red"} [bottoms]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - I'm searching for someone [not]{"entity":"is_with", "group":"lower_group", "value":"false"} [yellow]{"entity":"color", "group":"lower_group", "value":"yellow"} [pants]{"entity":"pants", "group":"lower_group", "value":"pants"} and [not wearing]{"entity":"is_with", "group":"hat_group", "value":"false"} [sombrero]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - I'm in search of a person [dressing on]{"entity":"is_with", "group":"lower_group", "value":"true"} [white]{"entity":"color", "group":"lower_group", "value":"white"} [khakis]{"entity":"pants", "group":"lower_group", "value":"pants"} and [not carry]{"entity":"is_with", "group":"hat_group", "value":"false"} [cap]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - I'm interested in finding someone [not having]{"entity":"is_with", "group":"hat_group", "value":"false"} [cap]{"entity":"hat", "group":"hat_group", "value":"hat"} and [wearing]{"entity":"is_with", "group":"upper_group", "value":"true"} [black]{"entity":"color", "group":"upper_group", "value":"black"} [blouse]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - I want to find a person [without]{"entity":"is_with", "group":"hat_group", "value":"false"} [hat]{"entity":"hat", "group":"hat_group"} and [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [red]{"entity":"color", "group":"upper_group", "value":"red"} [shirt]{"entity":"shirt", "group":"upper_group"}
+    - I'm searching for someone [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [red]{"entity":"color", "group":"upper_group", "value":"red"} [T-shirt]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [not puts on]{"entity":"is_with", "group":"hat_group", "value":"false"} [helmet]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - I'm in search of a person [not having]{"entity":"is_with", "group":"upper_group", "value":"false"} [white]{"entity":"color", "group":"upper_group", "value":"white"}  [top]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [not having]{"entity":"is_with", "group":"hat_group", "value":"false"} [cap]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - I'm interested in finding someone [not carry]{"entity":"is_with", "group":"bag_group", "value":"false"} [knaspack]{"entity":"bag", "group":"bag_group", "value":"bag"} and [puts on]{"entity":"is_with", "group":"lower_group", "value":"true"} [black]{"entity":"color", "group":"lower_group", "value":"black"}  [jeans]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - I want to find a person [not has on]{"entity":"is_with", "group":"bag_group", "value":"false"} [bag]{"entity":"bag", "group":"bag_group"} and [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [green]{"entity":"color", "group":"lower_group", "value":"green"} [bottoms]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - I'm searching for someone [not wearing]{"entity":"is_with", "group":"lower_group", "value":"false"} [red]{"entity":"color", "group":"lower_group", "value":"red"} [pants]{"entity":"pants", "group":"lower_group", "value":"pants"} and [no carrying]{"entity":"is_with", "group":"bag_group", "value":"false"} [handbag]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - I'm in search of a person [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [white]{"entity":"color", "group":"lower_group", "value":"white"} [khakis]{"entity":"pants", "group":"lower_group", "value":"pants"} and [without]{"entity":"is_with", "group":"bag_group", "value":"false"} [knapsack]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - I'm interested in finding someone [not having]{"entity":"is_with", "group":"bag_group", "value":"false"} [carrier]{"entity":"bag", "group":"bag_group", "value":"bag"} and [dresses in]{"entity":"is_with", "group":"upper_group", "value":"true"} [black]{"entity":"color", "group":"upper_group", "value":"black"} [blouse]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - I want to find a person [no with]{"entity":"is_with", "group":"bag_group", "value":"false"} [tote]{"entity":"bag", "group":"bag_group", "value":"bag"} and [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [red]{"entity":"color", "group":"upper_group", "value":"red"} [shirt]{"entity":"shirt", "group":"upper_group"}
+    - I'm searching for someone [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [red]{"entity":"color", "group":"upper_group", "value":"red"} [jacket]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [not having]{"entity":"is_with", "group":"bag_group", "value":"false"} [luggage]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - I'm in search of a person [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [white]{"entity":"color", "group":"upper_group", "value":"white"}  [top]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [doesnt put on]{"entity":"is_with", "group":"bag_group", "value":"false"} [knapsack]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - Have you seen a somebody [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [pink]{"entity":"color", "group":"upper_group", "value":"pink"} [coat]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [no]{"entity":"is_with", "group":"bag_group", "value":"false"} a [satchel]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - I want to find a person [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [yellow]{"entity":"color", "group":"lower_group", "value":"yellow"} [trousers]{"entity":"pants", "group":"lower_group", "value":"pants"}  and [using]{"entity":"is_with", "group":"hat_group", "value":"true"} a [headger]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - I want to find someone [dressing in]{"entity":"is_with", "group":"upper_group", "value":"true"} [grey]{"entity":"color", "group":"upper_group", "value":"grey"} [jacket]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [with no]{"entity":"is_with", "group":"bag_group", "value":"false"} [purse]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - I'm interested in finding someone [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [purple]{"entity":"color", "group":"upper_group", "value":"purple"}  [jersey]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [no]{"entity":"is_with", "group":"bag_group", "value":"false"} [tote]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - I want to find someone [doesn't wearing]{"entity":"is_with", "group":"lower_group", "value":"false"} [grey]{"entity":"color", "group":"lower_group", "value":"grey"} [pants]{"entity":"pants", "group":"lower_group", "value":"pants"} and [not]{"entity":"is_with", "group":"bag_group", "value":"false"} [case]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - I'm interested in finding someone [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [purple]{"entity":"color", "group":"lower_group", "value":"purple"} [trousers]{"entity":"pants", "group":"lower_group", "value":"pants"} and [with no]{"entity":"is_with", "group":"bag_group", "value":"false"} [carrier]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - Can you find me a one [not carry]{"entity":"is_with", "group":"bag_group", "value":"false"} [tote bag]{"entity":"bag", "group":"bag_group", "value":"bag"} and [using]{"entity":"is_with", "group":"upper_group", "value":"true"} [grey]{"entity":"color", "group":"upper_group", "value":"grey"} [polo]{"entity":"shirt", "group":"upper_group", "value":"shirt"}?
+    - Can you find me a person [with no]{"entity":"is_with", "group":"bag_group", "value":"false"} [sack]{"entity":"bag", "group":"bag_group", "value":"bag"} and [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [grey]{"entity":"color", "group":"lower_group", "value":"grey"} [pants]{"entity":"pants", "group":"lower_group", "value":"pants"}?
+    - I want to find someone [having]{"entity":"is_with", "group":"upper_group", "value":"true"} [grey]{"entity":"color", "group":"upper_group", "value":"grey"} [blazer]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [with no]{"entity":"is_with", "group":"hat_group", "value":"false"} [tam]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - I'm interested in finding someone [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [purple]{"entity":"color", "group":"upper_group", "value":"purple"}  [jersey]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [with no]{"entity":"is_with", "group":"hat_group", "value":"false"} [beret]{"entity":"hat", "group":"hat_group"}
+    - Can you find me a person [with no]{"entity":"is_with", "group":"hat_group", "value":"false"} [beret]{"entity":"hat", "group":"hat_group"} and [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [grey]{"entity":"color", "group":"upper_group", "value":"grey"} [polo]{"entity":"shirt", "group":"upper_group", "value":"shirt"}?
+    - I want to find someone [wearing]{"entity":"is_with", "group":"lower_group", "value":"true"} [grey]{"entity":"color", "group":"lower_group", "value":"grey"} [pants]{"entity":"pants", "group":"lower_group", "value":"pants"} and [with no]{"entity":"is_with", "group":"hat_group", "value":"false"} [bonnet]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - I'm interested in finding someone [with no]{"entity":"is_with", "group":"lower_group", "value":"false"} [purple]{"entity":"color", "group":"lower_group", "value":"purple"} [trousers]{"entity":"pants", "group":"lower_group", "value":"pants"} and [with no]{"entity":"is_with", "group":"hat_group", "value":"false"} [beret]{"entity":"hat", "group":"hat_group"}
+    - Can you find me a person [with no]{"entity":"is_with", "group":"hat_group", "value":"false"} [beret]{"entity":"hat", "group":"hat_group"} and [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [grey]{"entity":"color", "group":"lower_group", "value":"grey"} [pants]{"entity":"pants", "group":"lower_group", "value":"pants"}?
+    - Have you seen a person [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [orange]{"entity":"color", "group":"lower_group", "value":"orange"}  [jeans]{"entity":"pants", "group":"lower_group", "value":"pants"} and [without]{"entity":"is_with", "group":"hat_group", "value":"false"} [fedora]{"entity":"hat", "group":"hat_group", "value":"hat"}.
+    - I'm searching for a [grandfather]{"entity":"gender", "value":"male"} [not wearing]{"entity":"is_with", "group":"hat_group", "value":"false"} [hat]{"entity":"hat", "group":"hat_group"}.
+    - I want to find a [daughter]{"entity":"gender", "value":"female"} [doesn't put on]{"entity":"is_with", "group":"bag_group", "value":"false"} a [sack]{"entity":"bag", "group":"bag_group", "value":"bag"}.
+    - I want to find someone [using no]{"entity":"is_with", "group":"hat_group", "value":"false"} [cap]{"entity":"hat", "group":"hat_group"} and [without]{"entity":"is_with", "group":"bag_group", "value":"false"} [rucksack]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - I'm trying to locate an individual [with no]{"entity":"is_with", "group":"bag_group", "value":"false"} [case]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - I'm looking for a [male]{"entity":"gender", "value":"male"} [not taking]{"entity":"is_with", "group":"bag_group", "value":"false"} [backpack]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - I want to find a person [with]{"entity":"is_with", "group":"upper_group", "value":"true"} a [white]{"entity":"color", "group":"upper_group", "value":"white"} [shirt]{"entity":"shirt", "group":"upper_group"} and [no]{"entity":"is_with", "group":"hat_group", "value":"false"} [cap]{"entity":"hat", "group":"hat_group"}
+    - I'm interested in find a person [with no]{"entity":"is_with", "group":"hat_group", "value":"false"} [hat]{"entity":"hat", "group":"hat_group"}
+    - I want to find an [old man]{"entity":"gender", "value":"male"} [without]{"entity":"is_with", "group":"hat_group", "value":"false"} a [cap]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - I'm looking for someone [with no]{"entity":"is_with", "group":"bag_group", "value":"false"} [bag]{"entity":"bag", "group":"bag_group"}
+    - I'm searching for a someone who [has not]{"entity":"is_with", "group":"hat_group", "value":"false"} an [hat]{"entity":"hat", "group":"hat_group"} and [without]{"entity":"is_with", "group":"bag_group", "value":"false"} a [pouch]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - I'm searching for a [female]{"entity":"gender", "value":"female"} who [has not]{"entity":"is_with", "group":"hat_group", "value":"false"} an [hat]{"entity":"hat", "group":"hat_group"}.
+    - I'm look for a person [without]{"entity":"is_with", "group":"lower_group", "value":"false"} a [purple]{"entity":"color", "group":"lower_group", "value":"purple"} [jeans]{"entity":"pants", "group":"lower_group", "value":"pants"}.
+    - is there my [husband]{"entity":"gender", "value":"male"}
+    - i m look for a [son in law]{"entity":"gender", "value":"male"} [without]{"entity":"is_with", "group":"hat_group", "value":"false"} [hat]{"entity":"hat", "group":"hat_group"}
+    
+    
+    - have you seen someone in the [market]{"entity":"roi","group":"market_group", "value":"market"} [for]{"entity":"aux_time_of_persistence", "value":"for"} ten minutes
+    - do you see a [male]{"entity":"gender", "value":"male"} in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} for [more]{"entity":"aux_time_of_persistence", "value":"more"} than 5 minutes
+    - have you see a [woman]{"entity":"gender", "value":"female"} in the [market]{"entity":"roi","group":"market_group", "value":"market"}?
+    - there is a [son]{"entity":"gender", "value":"male"} that stays in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} for [less]{"entity":"aux_time_of_persistence", "value":"less"} than 30 minutes
+    - have you seen a [daughter]{"entity":"gender", "value":"female"} in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}?
+    - do you see a [woman]{"entity":"gender", "value":"female"} in the [market]{"entity":"roi","group":"market_group", "value":"market"} [for]{"entity":"aux_time_of_persistence", "value":"for"} 1 hour
+    - there is someone that stay in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} for [more]{"entity":"aux_time_of_persistence", "value":"more"} than 5 minutes
+    - have you seen a [uncle]{"entity":"gender", "value":"male"} that stays in the [market]{"entity":"roi","group":"market_group", "value":"market"} for [less]{"entity":"aux_time_of_persistence", "value":"less"} than 20 minutes
+    - do you see someone in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} [for]{"entity":"aux_time_of_persistence", "value":"for"} 15 minutes
+    - have you see a [dude]{"entity":"gender", "value":"male"} in the [market]{"entity":"roi","group":"market_group", "value":"market"} ?
+    - have you see a [lady]{"entity":"gender", "value":"female"} in the [market]{"entity":"roi","group":"market_group", "value":"market"} ?
+    - do you see a [guy]{"entity":"gender", "value":"male"} that stay in the [market]{"entity":"roi","group":"market_group", "value":"market"} for [more]{"entity":"aux_time_of_persistence", "value":"more"} than 2 hour
+    - there is a [girl] that stays in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} for [less]{"entity":"aux_time_of_persistence", "value":"less"} then 30 minutes
+    - have you seen a [woman]{"entity":"gender", "value":"female"} in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} [more]{"entity":"aux_time_of_persistence", "value":"more"} then 30 minutes
+    - have you notice a person in the [market]{"entity":"roi","group":"market_group", "value":"market"} that stays for [more]{"entity":"aux_time_of_persistence", "value":"more"} then 10 minutes
+    - have you seen a [guy] in the [market]{"entity":"roi","group":"market_group", "value":"market"} for [less]{"entity":"aux_time_of_persistence", "value":"less"} then 5 minutes
+    - there is a [dude] in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} that stays [for]{"entity":"aux_time_of_persistence", "value":"for"} fourteen minutes
+    - there is a [girl] in the [market]{"entity":"roi","group":"market_group", "value":"market"} that stays [for]{"entity":"aux_time_of_persistence", "value":"for"} 20 minutes
+    - do you see a [men]{"entity":"gender", "value":"male"} in the [market]{"entity":"roi","group":"market_group", "value":"market"}?
+    - do you see a [women]{"entity":"gender", "value":"female"} in the [market]{"entity":"roi","group":"market_group", "value":"market"}?
+    - do you see a [men]{"entity":"gender", "value":"male"} in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}?
+    - do you see a [women]{"entity":"gender", "value":"female"} in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}?
+    - do you see a [girl]{"entity":"gender", "value":"female"} in the [market]{"entity":"roi","group":"market_group", "value":"market"} for [more]{"entity":"aux_time_of_persistence", "value":"more"} than [ twenty minutes
+    - do you see a [guy]{"entity":"gender", "value":"male"}  in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} for [more]{"entity":"aux_time_of_persistence", "value":"more"} than 20 minutes
+    - is there a [girl]{"entity":"gender", "value":"female"} in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}?
+    - there is a [dude]{"entity":"gender", "value":"male"} in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}?
+    - is there a [girl]{"entity":"gender", "value":"female"} in the [market]{"entity":"roi","group":"market_group", "value":"market"}?
+    - there is a [dude]{"entity":"gender", "value":"male"} in the [market]{"entity":"roi","group":"market_group", "value":"market"}?
+    - there is [dude]{"entity":"gender", "value":"male"} that stay in the [market]{"entity":"roi","group":"market_group", "value":"market"} for [less]{"entity":"aux_time_of_persistence", "value":"less"} then  four minutes?
+    - there is [dude]{"entity":"gender", "value":"male"} that stay in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} for [less]{"entity":"aux_time_of_persistence", "value":"less"} then  31 minutes?
+    - there is [girl]{"entity":"gender", "value":"female"} that stay in the [market]{"entity":"roi","group":"market_group", "value":"market"} for [less]{"entity":"aux_time_of_persistence", "value":"less"} then 9 minutes?
+    - there is [female friend]{"entity":"gender", "value":"female"} that stay in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} for [less]{"entity":"aux_time_of_persistence", "value":"less"} then nine minutes?
+    - have you notice a [man]{"entity":"gender", "value":"male"} in the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - have you notice a [man]{"entity":"gender", "value":"male"} in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - have you notice a [female friend]{"entity":"gender", "value":"female"} in the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - have you notice a [stepmother]{"entity":"gender", "value":"female"} in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - have you notice a [guy]{"entity":"gender", "value":"male"} that stays in the [market]{"entity":"roi","group":"market_group", "value":"market"} for [more]{"entity":"aux_time_of_persistence", "value":"more"} than fifteen minutes
+    - have you notice a [guy]{"entity":"gender", "value":"male"} that stays in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} for [less]{"entity":"aux_time_of_persistence", "value":"less"} than eighteen minutes
+    - have you notice a [girlfriend]{"entity":"gender", "value":"female"} that stays in the [market]{"entity":"roi","group":"market_group", "value":"market"} for [more]{"entity":"aux_time_of_persistence", "value":"more"} than 6 minutes
+    - have you notice a [stepmother]{"entity":"gender", "value":"female"} that stays in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} for [more]{"entity":"aux_time_of_persistence", "value":"more"} than five mins
+    - do you see a [girl]{"entity":"gender", "value":"female"} in the [market]{"entity":"roi","group":"market_group", "value":"market"} for [more]{"entity":"aux_time_of_persistence", "value":"more"} than twenty seconds
+    - there is [girl]{"entity":"gender", "value":"female"} that stay in the [market]{"entity":"roi","group":"market_group", "value":"market"} for [less]{"entity":"aux_time_of_persistence", "value":"less"} then 10 seconds?
+    - have you seen a [guy] in the [market]{"entity":"roi","group":"market_group", "value":"market"} for [less]{"entity":"aux_time_of_persistence", "value":"less"} then 30 sec
+    - have you seen a [man] that stays in the [market]{"entity":"roi","group":"market_group", "value":"market"} for [less]{"entity":"aux_time_of_persistence", "value":"less"} than twenty seconds
+    - have you notice a [guy]{"entity":"gender", "value":"male"} that stays in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} for [less]{"entity":"aux_time_of_persistence", "value":"less"} than ten seconds
+    - there is someone that stay in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} for [more]{"entity":"aux_time_of_persistence", "value":"more"} than thirty seconds
+    - have you seen a person that pass the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} for four times
+    - there is someone that pass for the [market]{"entity":"roi","group":"market_group", "value":"market"} for 3 time 
+    - have you notice someone that pass for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} for 5 times
+    - do you see a person that pass for the [market]{"entity":"roi","group":"market_group", "value":"market"} for 2 times
+    - have you see someone that pass for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} for 3 times
+    - have you notice that pass for the [market]{"entity":"roi","group":"market_group", "value":"market"} for five times
+    - there is someone that pass for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} for 2 times
+    - have you see a person passes for the [market]{"entity":"roi","group":"market_group", "value":"market"} for 4 times 
+    - have you notice someone that pass for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} for 3 times
+    - have you see someone that pass for the [market]{"entity":"roi","group":"market_group", "value":"market"} for 2 times
+    - have you see a person that pass for [bar]{"entity":"roi","group":"bar_group", "value":"bar"} for 4 times
+    - there is someone that pass for the [market]{"entity":"roi","group":"market_group", "value":"market"} for 6 times
+    - there is someone that pass for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} for 3 times
+    - do you see a person that pass for the [market]{"entity":"roi","group":"market_group", "value":"market"} for 3 times 
+    - do you see someone that pass for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} for 2 times
+    - have you notice someone that pass for the [market]{"entity":"roi","group":"market_group", "value":"market"} for 5 times 
+    - have you see someone that pass 4 times for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - have you seen a person that pass 6 times for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - there is someone that pass for 2 times for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - there is someone that pass for 3 times  for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - have you see someone that pass for 2 times for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - have you notice someone that pass for 4 times  for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - do you see someone that pass for 5 times for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - do you see a person that pass for 6 times for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - there is someone that pass for 3 times for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - there is a person that pass for five times for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - have you see a person that spent time for 3 times for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - have you see a person that pass for 4 times  for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - have you notice a person that pass for 2 times for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - have you notice a person that pass for 5 times  for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - do you see a person that pass 3 times for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - do you see someone that pass 2 times for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - i want to find someone that pass 4 times for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - i want to find someone that pass 3 times for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - i want to find a person that pass 7 times for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - i want to find a person that stay 8 times for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - i want to find someone that is stayed [market]{"entity":"roi","group":"market_group", "value":"market"} 5 times 
+    - i want to find someone that pass for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} 2 times
+    - i want to find a person that pass for [market]{"entity":"roi","group":"market_group", "value":"market"} 5 times 
+    - i want to find a person that pass for [bar]{"entity":"roi","group":"bar_group", "value":"bar"} 9 times 
+    - i'm searching a person that pass for the [market]{"entity":"roi","group":"market_group", "value":"market"} 4 times 
+    - i'm searching a person that pass for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} 9 times 
+    - i'm searching a person that pass 3 time  for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - i'm searching a person that pass 6 times for [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+
+    - can you find someone that [was not in]{"entity":"is_with", "group":"bar_group", "value":"false"} the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - i'm searching for a person that [didn't pass]{"entity":"is_with", "group":"bar_group", "value":"false"} the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - i'm trying to locate someone that [doesn't pass]{"entity":"is_with", "group":"bar_group", "value":"false"} for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - have you notice someone that [not frequented]{"entity":"is_with", "group":"bar_group", "value":"false"} the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - there is someone that [does pass]{"entity":"is_with", "group":"bar_group", "value":"false"} for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - have you see someone that [doesn't spend time in]{"entity":"is_with", "group":"bar_group", "value":"false"} the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - can you find a [girl]{"entity":"gender", "value":"female"} that [doesn't pass]{"entity":"is_with", "group":"bar_group", "value":"false"} the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - i'm searching for a [guy]{"entity":"gender", "value":"male"} that [doesn't pass]{"entity":"is_with", "group":"bar_group", "value":"false"} for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - i'm trying to locate a person that [doesn't pass]{"entity":"is_with", "group":"bar_group", "value":"false"} for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - have you notice a person that [doesn't pass]{"entity":"is_with", "group":"bar_group", "value":"false"} for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - there is a [girl]{"entity":"gender", "value":"female"} that [doesn't pass]{"entity":"is_with", "group":"bar_group", "value":"false"} for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - have you see a [guy]{"entity":"gender", "value":"male"} that [doesn't pass]{"entity":"is_with", "group":"bar_group", "value":"false"} for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - can you find someone that [doesn't pass]{"entity":"is_with", "group":"market_group", "value":"false"} for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - i'm searching for a person that [doesn't pass]{"entity":"is_with", "group":"market_group", "value":"false"} for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - i'm trying to locate someone that [was not at]{"entity":"is_with", "group":"market_group", "value":"false"} for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - have you notice someone that [doesn't pass]{"entity":"is_with", "group":"market_group", "value":"false"} the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - there is someone that [does not pass]{"entity":"is_with", "group":"market_group", "value":"false"} for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - have you see someone that [doesn't pass]{"entity":"is_with", "group":"market_group", "value":"false"} for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - can you find a [stepsister]{"entity":"gender", "value":"female"} that [doesn't pass]{"entity":"is_with", "group":"market_group", "value":"false"} for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - i'm searching for a [guy]{"entity":"gender", "value":"male"} that [doesn't pass]{"entity":"is_with", "group":"market_group", "value":"false"} for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - i'm trying to locate a person that [doesn't pass]{"entity":"is_with", "group":"market_group", "value":"false"} for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - have you notice a person that [doesn't pass]{"entity":"is_with", "group":"market_group", "value":"false"} for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - there is a [stepsister]{"entity":"gender", "value":"female"} that [doesn't pass]{"entity":"is_with", "group":"market_group", "value":"false"} for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - have you see a [guy]{"entity":"gender", "value":"male"} that [doesn't pass]{"entity":"is_with", "group":"market_group", "value":"false"} for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - have you see someone that [not passed in]{"entity":"is_with", "group":"bar_group", "value":"false"} 15 times for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - have you notice someone [not at]{"entity":"is_with", "group":"bar_group", "value":"false"} 5 times for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - can you find a person that [has not been]{"entity":"is_with", "group":"bar_group", "value":"false"} 4 times for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - i'm searching a person [not at the]{"entity":"is_with", "group":"bar_group", "value":"false"} 6 times for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - have you see someone [not in]{"entity":"is_with", "group":"bar_group", "value":"false"} for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} 12 times
+    - have you notice someone that [doesn't pass]{"entity":"is_with", "group":"bar_group", "value":"false"} for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} 3 times
+    - can you find a person that [doesn't pass]{"entity":"is_with", "group":"bar_group", "value":"false"} for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} 6 times
+    - i'm searching a person that [doesn't pass]{"entity":"is_with", "group":"bar_group", "value":"false"} for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} 2 times
+    - have you see someone that [doesn't pass]{"entity":"is_with", "group":"market_group", "value":"false"} 1 time for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - have you notice someone that [doesn't pass]{"entity":"is_with", "group":"market_group", "value":"false"} 5 times  for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - can you find a person that [not stay in]{"entity":"is_with", "group":"market_group", "value":"false"} 11 times for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - i'm searching a person that [didn't pass]{"entity":"is_with", "group":"market_group", "value":"false"} 3 times for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - have you see someone that [doesn't pass]{"entity":"is_with", "group":"market_group", "value":"false"} for the [market]{"entity":"roi","group":"market_group", "value":"market"} 14 times
+    - have you notice someone that [does not pass]{"entity":"is_with", "group":"market_group", "value":"false"} for the [market]{"entity":"roi","group":"market_group", "value":"market"} 7 times
+    - can you find a person that [not stay in]{"entity":"is_with", "group":"market_group", "value":"false"} for the [market]{"entity":"roi","group":"market_group", "value":"market"} 4 times 
+    - i'm searching a person that [doesn't pass]{"entity":"is_with", "group":"market_group", "value":"false"} the [market]{"entity":"roi","group":"market_group", "value":"market"} 4 times 
+    - i am look for a individual [don't stay in]{"entity":"is_with", "group":"market_group", "value":"false"} [market]{"entity":"roi","group":"market_group", "value":"market"}
+    
+    - can you find someone that pass for the [market]{"entity":"roi","group":"market_group", "value":"market"} and [not]{"entity":"is_with", "group":"bar_group", "value":"false"} for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - i'm looking for a person that stay in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} and [not]{"entity":"is_with", "group":"market_group", "value":"false"} for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - have you see a person that [doesn't pass]{"entity":"is_with", "group":"bar_group", "value":"false"}  for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} and stay in the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - there is a person that [not pass]{"entity":"is_with", "group":"market_group", "value":"false"} or the [market]{"entity":"roi","group":"market_group", "value":"market"} and stay in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - i want to find a person that stay in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} and in the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - i want to find a person that stay in the [market]{"entity":"roi","group":"market_group", "value":"market"} but [not]{"entity":"is_with", "group":"bar_group", "value":"false"} pass for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - i'm searching for a person that [not]{"entity":"is_with", "group":"market_group", "value":"false"} stay in the [market]{"entity":"roi","group":"market_group", "value":"market"} but pass for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - have you notice someone that pass for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} and near the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - a person that pass near the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} and [not]{"entity":"is_with", "group":"market_group", "value":"false"} for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - have you notice someone near the [market]{"entity":"roi","group":"market_group", "value":"market"} but that [doesn't pass]{"entity":"is_with", "group":"bar_group", "value":"false"} the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - can you find a person that [not]{"entity":"is_with", "group":"market_group", "value":"false"} pass for the [market]{"entity":"roi","group":"market_group", "value":"market"} and stay near the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - can you find me someone that passed near the [bar]{"entity": "roi", "group": "bar_group"} for [more](aux_time_of_persistence) than 10 seconds?
+    - have you notice a [stepbrother]{"entity":"gender", "value":"male"} that [didn't pass]{"entity":"is_with", "group":"market_group", "value":"false"} for the [market]{"entity":"roi","group":"market_group", "value":"market"} but pass for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - can you find a [grandmother]{"entity":"gender", "value":"female"} that [did not stay]{"entity":"is_with", "group":"bar_group", "value":"false"} in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} but stay in the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - have you see a [boy] that stays in the [market]{"entity":"roi","group":"market_group", "value":"market"} but [didn't pass]{"entity":"is_with", "group":"bar_group", "value":"false"} near the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - there is a [grandmother]{"entity":"gender", "value":"female"} that [did not pass]{"entity":"is_with", "group":"market_group", "value":"false"} near the [market]{"entity":"roi","group":"market_group", "value":"market"} but stay near the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+
+- intent: ask_with_no_info
+  examples: |
+    - I'm looking for a person
+    - I am look for a person
+    - I'm searching for a person
+    - I'm in search of an individual
+    - I'm trying to find someone
+    - I'm on the hunt for a person
+    - I'm seeking out a specific individual
+    - I'm in need of locating a person
+    - I'm on a quest to find someone
+    - I'm searching for a particular person
+    - I'm in the process of locating an individual
+    - I'm in pursuit of a person
+    - I'm actively seeking someone
+
+- intent: explain
+  examples: |
+    - Why do you need to know that?
+    - What's the reason behind wanting that information?
+    - Could you share the purpose behind your inquiry?
+    - Is there a specific motivation for asking that?
+    - What leads you to inquire about that?
+    - Why do you want to know this info?
+    - Can you provide some context for needing that information?
+    - Is there a particular intention behind your question?
+    - What prompts your interest in that detail?
+    - Is there a specific goal you're trying to achieve by asking that?
+    - Can you shed light on the context for wanting to know?
+
+
+# user provides information about the gender
+- intent: inform_info
+  examples: |
+    - a [boy]{"entity":"gender", "value":"male"}
+    - [sister]{"entity":"gender", "value":"female"}
+    - a [old man]{"entity":"gender", "value":"male"}
+    - It should be a [mom]{"entity":"gender", "value":"female"}
+    - Pretty sure it is a [man]{"entity":"gender", "value":"male"}
+    - Almost sure is a [niece]{"entity":"gender", "value":"female"}
+    - [wife]{"entity":"gender", "value":"female"}
+    - [dude]{"entity":"gender", "value":"male"}
+    - [son]{"entity":"gender", "value":"male"}, I think
+    - a [male]{"entity":"gender", "value":"male"}
+    - Should be a [male]{"entity":"gender", "value":"male"}
+    - [man]{"entity":"gender", "value":"male"}
+    - [woman]{"entity":"gender", "value":"female"}
+    - It's [black]{"entity":"color", "value":"black"}
+    - [female]{"entity":"gender", "value":"female"}
+    - [male]{"entity":"gender", "value":"male"}
+    - Hmm, I think it was [blue]{"entity":"color", "value":"blue"}
+    - [orange]{"entity":"color", "value":"orange"}
+    - It was [white]{"entity":"color", "value":"white"}
+    - [purple]{"entity":"color", "value":"purple"}, I think.
+    - It should be [red]{"entity":"color", "value":"red"}
+    - Should be [yellow]{"entity":"color", "value":"yellow"}
+    - If I remember well, it was [brown]{"entity":"color", "value":"brown"}
+    - [grey]{"entity":"color", "value":"grey"}, I think 
+    - It is [pink]{"entity":"color", "value":"pink"}
+    - I think it is [purple]{"entity":"color", "value":"purple"}
+    - Let me think... It was [red]{"entity":"color", "value":"red"}
+    - I'm quietly sure it was [pink]{"entity":"color", "value":"pink"}
+    - I'm pretty sure it's [black]{"entity":"color", "value":"black"}
+    - It should be [yellow]{"entity":"color", "value":"yellow"}
+    - [orange]{"entity":"color", "value":"orange"}, I think
+    - Pretty sure it is [brown]{"entity":"color", "value":"brown"}
+    - [blue]{"entity":"color", "value":"blue"}
+    - [black]{"entity":"color", "value":"black"} [shirt]{"entity":"shirt"}
+    - [orange]{"entity":"color", "group":"lower_group", "value":"orange"} [pants]{"entity":"pants", "group":"lower_group"}
+    - [purple]{"entity":"color", "group":"upper_group", "value":"purple"} [pullover]{"entity":"shirt", "group":"upper_group"}
+    - a [red]{"entity":"color", "group":"upper_group", "value":"red"} [trousers]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - [black]{"entity":"color", "group":"upper_group", "value":"black"} [suit]{"entity":"shirt", "group":"upper_group"}
+    - [brown]{"entity":"color", "group":"lower_group", "value":"brown"} [dress]{"entity":"shirt", "group":"upper_group", "value":"suit"}
+    - It is [red]{"entity":"color", "value":"red"}, I'm sure about that
+    - Was [orange]{"entity":"color", "value":"orange"} if I'm not mistaken
+    - I'm sure it is [black]{"entity":"color", "value":"black"}
+    - it passed 3 times
+    - it passed 4 times
+    - it passed 2 times
+    - it passed 1 time
+    - 1 times
+    - 2 time
+    - 3 time
+    - 4 time
+    - 1 
+    - 2 
+    - 3
+    - 4 
+    - stay for [30 minutes](duration)
+    - [10 minutes](duration)
+    - [5 minutes](duration)
+    - [1 min](duration)
+    - [30 seconds](duration)
+    - [10 s](duration)
+    - stayed for [1 h](duration)
+    - [2 hours](duration)
+    - she is a [female](gender)
+    - he is a [male](gender)
+    
+
+# DA MODIFICARE
+- intent: count_people
+  examples: |
+    - everyone with [wearing]{"entity":"is_with", "group":"hat_group", "value":"true"} a [hat]{"entity":"hat", "group":"hat_group"}?
+    - count everybody [have]{"entity":"is_with", "group":"bag_group", "value":"true"} a [bag]{"entity":"bag", "group":"bag_group"}?
+    - how many people [have]{"entity":"is_with", "group":"upper_group", "value":"true"} a [blue]{"entity":"color",  "group":"upper_group", "value":"blue"} [t-shirt]{"entity":"shirt", "group":"upper_group", "value":"shirt"}?
+    - count the [dudes]{"entity":"gender", "value":"male"} [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [red]{"entity":"color", "group":"lower_group", "value":"red"} [pants]{"entity":"pants", "group":"lower_group"}
+    - count the [boys]{"entity":"gender", "value":"male"} [with]{"entity":"is_with", "group":"hat_group", "value":"true"}  a [hat]{"entity":"hat", "group":"hat_group"}
+    - count the [old men]{"entity":"gender", "value":"male"} [without]{"entity":"is_with", "group":"hat_group", "value":"false"} a [hat]{"entity":"hat", "group":"hat_group"}
+    - count the people [without]{"entity":"is_with", "group":"bag_group", "value":"false"}  a [bag]{"entity":"bag", "group":"bag_group"}
+    - how many people have [with]{"entity":"is_with", "group":"upper_group", "value":"true"} a [blue]{"entity":"color",  "group":"upper_group", "value":"blue"} T-shirt and [red]{"entity":"color", "group":"lower_group", "value":"red"} [pants]{"entity":"pants", "group":"lower_group"}?
+    - count the people [without]{"entity":"is_with", "group":"hat_group", "value":"false"} [hat]{"entity":"hat", "group":"hat_group"}
+    - count everyone [with]{"entity":"is_with", "group":"bag_group", "value":"true"} a [bag]{"entity":"bag", "group":"bag_group"} and [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [blue]{"entity":"color", "group":"upper_group", "value":"blue"} [shirt]{"entity":"shirt", "group":"upper_group"}?
+    - how many people [have]{"entity":"is_with", "group":"lower_group", "value":"true"} [purple]{"entity":"color", "value":"purple", "group":"lower_group"} [jeans]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - how many people are [male]{"entity":"gender", "value":"male"} and [with]{"entity":"is_with", "group":"bag_group", "value":"true"} [rucksack]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - know the quantity of people [no]{"entity":"is_with", "group":"hat_group", "value":"false"} [cap]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - count people [with no]{"entity":"is_with", "group":"hat_group", "value":"false"} [fedora]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - count everyone [without]{"entity":"is_with", "group":"bag_group", "value":"false"} a [purse]{"entity":"hat", "group":"bag_group", "value":"bag"}
+    - Let's tally the number of people [with no]{"entity":"is_with", "group":"lower_group", "value":"false"} [green]{"entity":"color", "group":"lower_group", "value":"green"} [pants]{"entity":"pants", "group":"lower_group"}
+    - Enumerate individuals [without]{"entity":"is_with", "group":"bag_group", "value":"false"} [backpack]{"entity":"bag", "group":"bag_group", "value":"bag"} and [not wear]{"entity":"is_with", "group":"lower_group", "value":"false"} [grey]{"entity":"color", "group":"lower_group", "value":"grey"} [suits]{"entity":"pants", "group":"lower_group", "value":"suit"}
+    - Determine how many people [not puts on]{"entity":"is_with", "group":"bag_group", "value":"false"} a [bag]{"entity":"bag", "group":"bag_group"} and [have]{"entity":"is_with", "group":"hat_group", "value":"true"} [sombrero]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - assess the number of individuals [doesn't wear]{"entity":"is_with", "group":"bag_group", "value":"false"} a [sack]{"entity":"bag", "group":"bag_group", "value":"bag"} and [no]{"entity":"is_with", "group":"upper_group", "value":"false"} [yellow]{"entity":"color", "group":"upper_group", "value":"yellow"} [top]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - Enumerate individuals [doesn't wear]{"entity":"is_with", "group":"hat_group", "value":"false"} a [bonnet]{"entity":"hat", "group":"hat_group", "value":"hat"} and [does not wear]{"entity":"is_with", "group":"bag_group", "value":"false"} a [sack]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - Look for everyone [have not]{"entity":"is_with", "group":"hat_group", "value":"false"} a [sombrero]{"entity":"hat", "group":"hat_group", "value":"hat"} and [not have]{"entity":"is_with", "group":"lower_group", "value":"false"} [white]{"entity":"color", "group":"lower_group", "value":"white"} [khakis]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - assess the number of individuals [haven't]{"entity":"is_with", "group":"bag_group", "value":"false"} a [bag]{"entity":"bag", "group":"bag_group"} and [don't wear]{"entity":"is_with", "group":"hat_group", "value":"false"} [fedora]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - Determine the number of people [have]{"entity":"is_with", "group":"hat_group", "value":"true"} [hat]{"entity":"hat", "group":"hat_group"}
+    - can you count everybody [having]{"entity":"is_with", "group":"bag_group", "value":"true"} [case]{"entity":"bag", "group":"bag_group", "value":"bag"} and [have]{"entity":"is_with", "group":"lower_group", "value":"true"} [pink]{"entity":"color", "group":"lower_group", "value":"pink"} [chinos]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - count of individuals [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [orange]{"entity":"color", "group":"upper_group", "value":"orange"} [hoodie]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [puts]{"entity":"is_with", "group":"lower_group", "value":"true"} [purple]{"entity":"color", "group":"lower_group", "value":"purple"} [jeans]{"entity":"pants", "group":"lower_group", "value":"pants"}, have you seen them?
+    - number of [males]{"entity":"gender", "value":"male"} [not]{"entity":"is_with", "group":"bag_group", "value":"false"} [carrys]{"entity":"is_with", "group":"bag_group", "value":"true"} [satchel]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - i am searching everybody [wearing]{"entity":"is_with", "group":"lower_group", "value":"true"} [black]{"entity":"color", "group":"lower_group", "value":"black"} [leggings]{"entity":"pants", "group":"lower_group", "value":"pants"} and [have]{"entity":"is_with", "group":"upper_group", "value":"true"} [orange]{"entity":"color", "group":"upper_group", "value":"orange"} [t shirt]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - looks for all those [brings]{"entity":"is_with", "group":"bag_group", "value":"true"} [luggage]{"entity":"bag", "group":"bag_group", "value":"bag"} and [wear]{"entity":"is_with", "group":"hat_group", "value":"true"} [beret]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - i am looking for all people [having]{"entity":"is_with", "group":"hat_group", "value":"true"} [headgear]{"entity":"hat", "group":"hat_group", "value":"hat"} and [not]{"entity":"is_with", "group":"upper_group", "value":"false"} [brown]{"entity":"color", "group":"upper_group", "value":"brown"} [blouse]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - is there a group of individuals [wearing]{"entity":"is_with", "group":"hat_group", "value":"true"} a [bonnet]{"entity":"hat", "group":"hat_group", "value":"hat"} and [puts]{"entity":"is_with", "group":"lower_group", "value":"true"} [yellow]{"entity":"color", "group":"lower_group", "value":"yellow"} [skirt]{"entity":"pants", "group":"lower_group", "value":"pants"}?
+    - i am looks for all people [wear]{"entity":"is_with", "group":"hat_group", "value":"true"} [cap]{"entity":"hat", "group":"hat_group", "value":"hat"} and [brings]{"entity":"is_with", "group":"bag_group", "value":"true"} [tote bag]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - I am searching for all individuals who [wear]{"entity":"is_with", "group":"upper_group", "value":"true"} [orange]{"entity":"color", "group":"upper_group", "value":"orange"} [pullover]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [have]{"entity":"is_with", "group":"hat_group", "value":"true"} [elmet]{"entity":"hat", "group":"hat_group", "value":"hat"}.
+    - Tell me the number of people [have]{"entity":"is_with", "group":"upper_group", "value":"true"} [green]{"entity":"color", "group":"upper_group", "value":"green"} [coat]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [wear]{"entity":"is_with", "group":"bag_group", "value":"true"} [pouch]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - count all people [wear]{"entity":"is_with", "group":"lower_group", "value":"true"} [blue]{"entity":"color", "group":"lower_group", "value":"blue"} [clothings]{"entity":"pants", "group":"lower_group", "value":"suit"} and [with]{"entity":"is_with", "group":"hat_group", "value":"true"} [beanie]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - can you look for everybody [have]{"entity":"is_with", "group":"lower_group", "value":"true"} [grey]{"entity":"color", "group":"lower_group", "value":"grey"} [bottoms]{"entity":"pants", "group":"lower_group", "value":"pants"} and [takes]{"entity":"is_with", "group":"bag_group", "value":"true"} [backpack]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - i am searching everyone [wear]{"entity": "is_with", "group": "hat_group", "value": "true"} [hat]{"entity": "hat", "group": "hat_group"} and [put]{"entity": "is_with", "group": "lower_group", "value": "true"} [black]{"entity":"color", "group":"lower_group", "value":"black"} [dress]{"entity":"pants", "group":"lower_group", "value":"suit"}
+    - determine number of people [without]{"entity":"is_with", "group":"upper_group", "value":"false"} [blue]{"entity":"color", "group":"upper_group", "value":"blue"} [top]{"entity":"shirt", "group":"upper_group", "value":"shirt"}.
+    - all people [with out]{"entity":"is_with", "group":"upper_group", "value":"false"} [brown]{"entity":"color", "group":"upper_group", "value":"brown"} [shirt]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [not]{"entity":"is_with", "group":"hat_group", "value":"false"} [topper]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - i am seeking all those [not put on]{"entity":"is_with", "group":"lower_group", "value":"false"} [yellow]{"entity":"color", "group":"lower_group", "value":"yellow"} [chinos]{"entity":"pants", "group":"lower_group", "value":"pants"} and [not wear]{"entity":"is_with", "group":"hat_group", "value":"false"} [bonnet]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    - everybody [with no]{"entity":"is_with", "group":"lower_group", "value":"false"} [orange]{"entity":"color", "group":"lower_group", "value":"orange"} [sweatpants]{"entity":"pants", "group":"lower_group", "value":"pants"} and [don't wear]{"entity":"is_with", "group":"bag_group", "value":"false"} [sack]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - all people [don't put]{"entity":"is_with", "group":"upper_group", "value":"false"} [red]{"entity":"color", "group":"upper_group", "value":"red"} [polo]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [no]{"entity":"is_with", "group":"bag_group", "value":"false"} [carryall]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - count all persons [don't have]{"entity":"is_with", "group":"hat_group", "value":"false"} [tam]{"entity":"hat", "group":"hat_group", "value":"hat"} and [no]{"entity":"is_with", "group":"upper_group", "value":"false"} [purple]{"entity":"color", "group":"upper_group", "value":"purple"} [hoodie]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - assess everybody [does't wear]{"entity":"is_with", "group":"upper_group", "value":"false"} [white]{"entity":"color", "group":"upper_group", "value":"white"} [tee]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [not put]{"entity":"is_with", "group":"lower_group", "value":"false"} [grey]{"entity":"color", "group":"lower_group", "value":"grey"} [tights]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - can you count number of people [don't have]{"entity":"is_with", "group":"lower_group", "value":"false"} [green]{"entity":"color", "group":"lower_group", "value":"green"} [corduroys]{"entity":"pants", "group":"lower_group", "value":"pants"} and [don't dress]{"entity":"is_with", "group":"upper_group", "value":"false"}  [grey]{"entity":"color", "group":"upper_group", "value":"grey"} [oxfoard]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - i am look for people [put on]{"entity": "is_with", "group": "hat_group", "value": "true"} [sombrero]{"entity": "hat", "group": "hat_group", "value":"hat"} and [not take]{"entity":"is_with", "group":"bag_group", "value":"false"} [case]{"entity":"bag", "group":"bag_group", "value":"bag"}
+    - look for everybody [with]{"entity":"is_with", "group":"bag_group", "value":"true"} [carrie]{"entity":"bag", "group":"bag_group", "value":"bag"} and [not]{"entity": "is_with", "group": "hat_group", "value": "false"} [headgar]{"entity": "hat", "group": "hat_group", "value":"hat"}
+    - determine number of person [wear]{"entity": "is_with", "group": "hat_group", "value": "true"} [cap]{"entity": "hat", "group": "hat_group", "value":"hat"} and [not]{"entity":"is_with", "group":"upper_group", "value":"false"} [white]{"entity":"color", "group":"upper_group", "value":"white"} [suit]{"entity":"shirt", "group":"upper_group", "value":"suit"}
+    - count only those people [have]{"entity": "is_with", "group": "hat_group", "value": "true"} [beret]{"entity": "hat", "group": "hat_group", "value":"hat"} and [not wear]{"entity":"is_with", "group":"lower_group", "value":"false"} [green]{"entity":"color", "group":"lower_group", "value":"green"} [jeans]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - determine number of person [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [bleck]{"entity":"color", "group":"upper_group", "value":"black"} [blouse]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [doesn't wear]{"entity": "is_with", "group": "hat_group", "value": "false"} [bonnet]{"entity": "hat", "group": "hat_group", "value":"hat"}
+    - look for all [ladies]{"entity":"gender", "value":"female"} that [not have]{"entity": "is_with", "group": "hat_group", "value": "false"} [tam]{"entity": "hat", "group": "hat_group", "value":"hat"}
+    - count all [aunts]{"entity":"gender", "value":"female"} [not have]{"entity":"is_with", "group":"upper_group", "value":"false"} [orange]{"entity":"color", "group":"upper_group", "value":"orange"} [sweaters]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - count all those individual [has]{"entity":"is_with", "group":"upper_group", "value":"true"} [pink]{"entity":"color", "group":"upper_group", "value":"pink"} [jackets]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [not wear]{"entity":"is_with", "group":"lower_group", "value":"false"} [purple]{"entity":"color", "group":"lower_group", "value":"purple"} [slacks]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - number of persons [have]{"entity":"is_with", "group":"lower_group", "value":"true"} [grey]{"entity":"color", "group":"lower_group", "value":"grey"} [tights]{"entity":"pants", "group":"lower_group", "value":"pants"} and [not wear]{"entity":"is_with", "group":"upper_group", "value":"false"} [yellow]{"entity":"color", "group":"upper_group", "value":"yellow"} [jersey]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - i am searching all those [wearing]{"entity": "is_with", "group": "bag_group", "value": "true"} [case]{"entity": "bag", "group": "bag_group", "value":"bag"} and [not]{"entity":"is_with", "group":"upper_group", "value":"false"} [brown]{"entity":"color", "group":"upper_group", "value":"brown"} [clothings]{"entity":"shirt", "group":"upper_group", "value":"suit"} 
+    - looks for all people [have]{"entity": "is_with", "group": "bag_group", "value": "true"} [rucksack]{"entity": "bag", "group": "bag_group", "value":"bag"} and [not]{"entity":"is_with", "group":"lower_group", "value":"false"} [white]{"entity":"color", "group":"lower_group", "value":"white"} [trousers]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - are there all [mums]{"entity":"gender", "value":"female"} that [not wears]{"entity":"is_with", "group":"lower_group", "value":"false"} [orange]{"entity":"color", "group":"lower_group", "value":"orange"} [pants]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - all people [wear]{"entity":"is_with", "group":"upper_group", "value":"true"} [purple]{"entity":"color", "group":"upper_group", "value":"purple"} [sweaters]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [not carry]{"entity": "is_with", "group": "bag_group", "value": "false"} [tote bag]{"entity": "bag", "group": "bag_group", "value":"bag"} 
+    - count all humans [put on]{"entity":"is_with", "group":"lower_group", "value":"true"} [pink]{"entity":"color", "group":"lower_group", "value":"pink"} [jeans]{"entity":"pants", "group":"lower_group", "value":"pants"} and [no]{"entity": "is_with", "group": "hat_group", "value": "false"} [beret]{"entity": "hat", "group": "hat_group", "value":"hat"}
+    - determine number of persons [dress in]{"entity":"is_with", "group":"lower_group", "value":"true"} [red]{"entity":"color", "group":"lower_group", "value":"red"} [trousers]{"entity":"pants", "group":"lower_group", "value":"pants"} and [don't take]{"entity":"is_with", "group":"bag_group", "value":"false"} [purses]{"entity":"bag", "group":"bag_group", "value":"bag"} 
+    - how many people [don't have]{"entity": "is_with", "group": "hat_group", "value": "false"} [bonnet]{"entity": "hat", "group": "hat_group", "value":"hat"} and [with]{"entity": "is_with", "group": "bag_group", "value": "true"} [luggage]{"entity": "bag", "group": "bag_group", "value":"bag"}
+    - i am searching people [with out]{"entity": "is_with", "group": "hat_group", "value": "false"} [beret]{"entity": "hat", "group": "hat_group", "value":"hat"} and [having]{"entity":"is_with", "group":"upper_group", "value":"true"} [purple]{"entity":"color", "group":"upper_group", "value":"purple"} [top]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - everyone [don't wear]{"entity": "is_with", "group": "hat_group", "value": "false"} [fedora]{"entity": "hat", "group": "hat_group", "value":"hat"} and [wearing]{"entity":"is_with", "group":"lower_group", "value":"true"} [red]{"entity":"color", "group":"lower_group", "value":"red"} [chinos]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - looks for all people [wear]{"entity": "is_with", "group": "bag_group", "value": "true"} [knaspack]{"entity": "bag", "group": "bag_group", "value":"bag"} and [not]{"entity":"is_with", "group":"lower_group", "value":"false"} [yellow]{"entity":"color", "group":"lower_group", "value":"yellow"} [sweatpants]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - count all persons [have]{"entity": "is_with", "group": "bag_group", "value": "true"} [satchel]{"entity": "bag", "group": "bag_group", "value":"bag"} and [not have]{"entity":"is_with", "group":"upper_group", "value":"false"} [red]{"entity":"color", "group":"upper_group", "value":"red"} [polo]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - all those [with]{"entity":"is_with", "group":"lower_group", "value":"true"} [purple]{"entity":"color", "group":"lower_group", "value":"purple"} [corduroys]{"entity":"pants", "group":"lower_group", "value":"pants"} and [don't have]{"entity": "is_with", "group": "bag_group", "value": "false"} [tote bag]{"entity": "bag", "group": "bag_group", "value":"bag"}
+    - determine number of people [have]{"entity":"is_with", "group":"upper_group", "value":"true"} [red]{"entity":"color", "group":"upper_group", "value":"red"} [polo]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [have]{"entity": "is_with", "group": "bag_group", "value": "true"} [knaspack]{"entity": "bag", "group": "bag_group", "value":"bag"}
+    - everyone [wearing]{"entity":"is_with", "group":"lower_group", "value":"true"} [purple]{"entity":"color", "group":"lower_group", "value":"purple"} [trousers]{"entity":"pants", "group":"lower_group", "value":"pants"} and  [don't wear]{"entity": "is_with", "group": "hat_group", "value": "false"} [bonnet]{"entity": "hat", "group": "hat_group", "value":"hat"}
+    - i am searching people [having]{"entity":"is_with", "group":"upper_group", "value":"true"} [pink]{"entity":"color", "group":"upper_group", "value":"pink"} [bottom-up]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [with out]{"entity": "is_with", "group": "hat_group", "value": "false"} [sombrero]{"entity": "hat", "group": "hat_group", "value":"hat"}
+    - number of persons [not wear]{"entity":"is_with", "group":"upper_group", "value":"false"} [yellow]{"entity":"color", "group":"upper_group", "value":"yellow"} [jersey]{"entity":"shirt", "group":"upper_group", "value":"shirt"} and [have]{"entity":"is_with", "group":"lower_group", "value":"true"} [grey]{"entity":"color", "group":"lower_group", "value":"grey"} [tights]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - enumerate people who [have not]{"entity":"is_with", "group":"lower_group", "value":"false"} [brown]{"entity":"color", "group":"lower_group", "value":"brown"} [leggings]{"entity":"pants", "group":"lower_group", "value":"pants"} and  [wear]{"entity":"is_with", "group":"upper_group", "value":"true"} [black]{"entity":"color", "group":"upper_group", "value":"black"} [polo]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    - i'd lik to know number of [sirs]{"entity":"gender", "value":"male"} [wearing]{"entity":"is_with", "group":"lower_group", "value":"true"} [blue]{"entity":"color", "group":"lower_group", "value":"blue"} [chinos]{"entity":"pants", "group":"lower_group", "value":"pants"}
+    - i am searching every [wives]{"entity":"gender", "value":"female"} [not wear]{"entity": "is_with", "group": "hat_group", "value": "false"} [topper]{"entity": "hat", "group": "hat_group", "value":"hat"}
+    
+    
+    - how many people pass for the [market]{"entity":"roi","group":"market_group", "value":"market"}?
+    - how many people pass for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}?
+    - count the people that pass for the [market]{"entity":"roi","group":"market_group", "value":"market"}?
+    - count the people that pass for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}?
+    - how many people stays in the [market]{"entity":"roi","group":"market_group", "value":"market"} [for]{"entity":"aux_time_of_persistence", "value":"for"} 5 minutes
+    - how many people stays in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}  [for]{"entity":"aux_time_of_persistence", "value":"for"} 10 minutes
+    - count the people that stays in the [market]{"entity":"roi","group":"market_group", "value":"market"} for [more]{"entity":"aux_time_of_persistence", "value":"more"} than 20 minutes
+    - count the people that stays in the [bar]"entity":"roi","group":"bar_group"}  for [more]{"entity":"aux_time_of_persistence", "value":"more"} than 2 minutes
+    - count the people that stays in the [market]{"entity":"roi","group":"market_group", "value":"market"} [for]{"entity":"aux_time_of_persistence", "value":"for"} 3 minutes
+    - count the people that stays in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} [for]{"entity":"aux_time_of_persistence", "value":"for"} 30 minutes
+    - how many people stays in the [market]{"entity":"roi","group":"market_group", "value":"market"} for [more]{"entity":"aux_time_of_persistence", "value":"more"} than 20 minutes
+    - how many people stays in the [bar]"entity":"roi","group":"bar_group"}  for [more]{"entity":"aux_time_of_persistence", "value":"more"} than 2 minutes
+    - can you tell me how many people pass for the  [market]{"entity":"roi","group":"market_group", "value":"market"}?
+    - can you tell me how many people pass for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}?
+    - how many people stays in the [market]{"entity":"roi","group":"market_group", "value":"market"} for [less]{"entity":"aux_time_of_persistence", "value":"less"} than 1 minute
+    - how many people stays in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} for [less]{"entity":"aux_time_of_persistence", "value":"less"} 30 minutes
+    - count the people that stays in the [market]{"entity":"roi","group":"market_group", "value":"market"} for [less]{"entity":"aux_time_of_persistence", "value":"less"} than 10 minutes
+    - count the  people stays in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} for [less]{"entity":"aux_time_of_persistence", "value":"less"} 15 minutes
+    - how many people stay [for]{"entity":"aux_time_of_persistence", "value":"for"} 40 minutes in the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - how many people stay [for]{"entity":"aux_time_of_persistence", "value":"for"} 20 minutes in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - count the people that stay [for]{"entity":"aux_time_of_persistence", "value":"for"} 1 hour in the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - count the people that  stay [for]{"entity":"aux_time_of_persistence", "value":"for"} 20 minutes in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - how many people stay for [less]{"entity":"aux_time_of_persistence", "value":"less"} than 25 minutes in the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - how many people stay for [less]{"entity":"aux_time_of_persistence", "value":"less"} than 35 minutes in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - count the people that stay for [less]{"entity":"aux_time_of_persistence", "value":"less"} than 15 minutes} in the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - count the people that  stay for [less]{"entity":"aux_time_of_persistence", "value":"less"} than 5 hours in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - how many people stay for [more]{"entity":"aux_time_of_persistence", "value":"more"} than six minutes in the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - how many people stay for [more]{"entity":"aux_time_of_persistence", "value":"more"} than 18 minutes in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - count the people that stay for [more]{"entity":"aux_time_of_persistence", "value":"more"} than 15 min in the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - count the people that  stay for [less]{"entity":"aux_time_of_persistence", "value":"less"} than 22 minutes in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - how many [daughters-in-law]{"entity":"gender", "value":"female"} are in the [market]{"entity":"roi","group":"market_group", "value":"market"}?
+    - how many [guys]{"entity":"gender", "value":"male"} are in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - count the [ladies]{"entity":"gender", "value":"female"} that are in the [market]{"entity":"roi","group":"market_group", "value":"market"}?
+    - count the [boys]{"entity":"gender", "value":"male"} are in the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - how many people pass 4 times for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - how many people pass 3 times for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - count the people that passed 2 times for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"}
+    - count the people that pass 5 times  for the [market]{"entity":"roi","group":"market_group", "value":"market"}
+    - how many people pass for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} 6 times
+    - how many people pass for the [market]{"entity":"roi","group":"market_group", "value":"market"} 8 times
+    - count the people that pass for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} 7 times
+    - count the people that pass for the [market]{"entity":"roi","group":"market_group", "value":"market"} 3 times
+    - are there [daughter-in-law]{"entity":"gender", "value":"female"}  pass for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} 5 times
+    - how many [guys]{"entity":"gender", "value":"male"} pass for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} 10 times
+    - how many [girls]{"entity":"gender", "value":"female"} pass for [market]{"entity":"roi","group":"market_group", "value":"market"} 9 times
+    - how many [guys]{"entity":"gender", "value":"male"} pass for the [market]{"entity":"roi","group":"market_group", "value":"market"} 6 times
+    - count the [girls]{"entity":"gender", "value":"female"} that  pass for the [bar]{"entity":"roi","group":"bar_group", "value":"bar"} 2 times
+    - Give me the number [guys]{"entity":"gender", "value":"male"} that pass [bar]{"entity":"roi","group":"bar_group", "value":"bar"} 4 times
+    - Find me number of [girls]{"entity":"gender", "value":"female"} pass for [market]{"entity":"roi","group":"market_group", "value":"market"} 15 times
+    - count the [guys]{"entity":"gender", "value":"male"} pass for the [market]{"entity":"roi","group":"market_group", "value":"market"} 6 times
+
+# ---------- LOOKUP TABLE ----------
+- lookup: color
+  examples: |
+    - blue
+    - Blue
+    - white
+    - White
+    - black
+    - Black
+    - red
+    - Red
+    - green
+    - Green
+    - yellow
+    - Yellow
+    - orange
+    - Orange
+    - purple
+    - Purple
+    - Pink
+    - pink
+    - brown
+    - Brown
+    - gray
+    - Gray
+    - grey
+    - Grey
+    
+
+# ---------- SYNONYMS ----------
+- synonym: female
+  examples: |
+    - girl
+    - woman
+    - young girl
+    - gal
+    - lady
+    - sister
+    - old woman
+    - young woman
+    - daughter
+    - miss
+    - mum
+    - mother
+    - grandmother
+    - aunt
+    - female cousin
+    - niece
+    - wife
+    - mother-in-law
+    - daughter-in-law
+    - stepsister
+    - stepmother
+    - girlfriend
+    - female friend
+    - stepdaughter
+    - madam
+    - girls
+    - women
+    - young Girls
+    - gals
+    - ladies
+    - sisters
+    - old Women
+    - young Women
+    - daughters
+    - misses
+    - mums
+    - moms
+    - mothers
+    - grandmothers
+    - aunts
+    - female Cousins
+    - nieces
+    - wives
+    - mothers-in-law
+    - daughters-in-law
+    - stepsisters
+    - stepmothers
+    - girlfriends
+    - female Friends
+    - stepdaughters
+    - madams
+    - females
+
+- synonym: male
+  examples: |
+    - man
+    - young man
+    - old man
+    - boy
+    - guy
+    - brother
+    - dude
+    - son
+    - sir
+    - father
+    - grandfather
+    - uncle
+    - nephew
+    - husband
+    - father-in-law
+    - son-in-law
+    - stepbrother
+    - stepfather
+    - boyfriend
+    - stepson
+    - men
+    - young Men
+    - old Men
+    - boys
+    - guys
+    - brothers
+    - dudes
+    - sons
+    - sirs
+    - fathers
+    - grandfathers
+    - uncles
+    - cousins
+    - nephews
+    - husbands
+    - fathers-in-law
+    - sons-in-law
+    - stepbrothers
+    - stepfathers
+    - boyfriends
+    - friends
+    - stepsons
+    - males
+
+- synonym: hat
+  examples: |
+    - beret
+    - cap
+    - headgear
+    - bonnet
+    - beanie
+    - fedora
+    - sombrero
+    - tam
+    - topper
+    - helmet
+
+# mettere sinonimi con upper e lower
+- synonym: shirt
+  examples: |
+    - blouse
+    - top
+    - tunic
+    - tee
+    - polo
+    - T-shirt
+    - button-up
+    - pullover
+    - jersey
+    - oxford
+    - cardigan
+    - coat
+    - jacket
+    - bluse
+    - zipped sweatshirt
+    - sweatshirts
+    - blazer
+
+- synonym: suit
+  examples: |
+    - dress
+    - clothing
+    - duds
+    - suit and tie
+    - clothings
+    - suits
+    - suits and tie
+
+- synonym: pants
+  examples: |
+    - trousers
+    - slacks
+    - bottoms
+    - jeans
+    - leggings
+    - chinos
+    - khakis
+    - tights
+    - corduroys
+    - sweatpants
+    - skirt
+
+- synonym: bag
+  examples: |
+    - sack
+    - pouch
+    - tote
+    - purse
+    - backpack
+    - rucksack
+    - knapsack
+    - luggage
+    - carrier
+    - satchel
+    - case
+    - tote bag
+    - carryall
+    - handbag
+

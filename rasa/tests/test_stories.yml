@@ -1,0 +1,204 @@
+#### This file contains tests to evaluate that your bot behaves as expected.
+#### If you want to learn more, please see the docs: https://rasa.com/docs/rasa/testing-your-assistant
+
+stories:
+- story: happy path 1
+  steps:
+  - user: |
+      hello there!
+    intent: greet
+  - action: utter_greet
+  - user: |
+      amazing
+    intent: mood_great
+  - action: utter_happy
+
+- story: happy path 2
+  steps:
+  - user: |
+      hello there!
+    intent: greet
+  - action: utter_greet
+  - user: |
+      amazing
+    intent: mood_great
+  - action: utter_happy
+  - user: |
+      bye-bye!
+    intent: goodbye
+  - action: utter_goodbye
+
+- story: sad path 1
+  steps:
+  - user: |
+      hello
+    intent: greet
+  - action: utter_greet
+  - user: |
+      not good
+    intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - user: |
+      yes
+    intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - user: |
+      hello
+    intent: greet
+  - action: utter_greet
+  - user: |
+      not good
+    intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - user: |
+      not really
+    intent: deny
+  - action: utter_goodbye
+
+- story: sad path 3
+  steps:
+  - user: |
+      hi
+    intent: greet
+  - action: utter_greet
+  - user: |
+      very terrible
+    intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - user: |
+      no
+    intent: deny
+  - action: utter_goodbye
+
+- story: say goodbye
+  steps:
+  - user: |
+      bye-bye!
+    intent: goodbye
+  - action: utter_goodbye
+
+- story: bot challenge
+  steps:
+  - user: |
+      are you a bot?
+    intent: bot_challenge
+  - action: utter_iamabot
+
+- story: activate form ask with no info
+  steps:
+  - user: |
+      i am looking for a person
+    intent: ask_with_no_info
+  - action: person_form
+
+
+- story: activate form ask with info
+  steps:
+  - user: |
+      i'm searching for a person [with]{"entity":"is_with", "group":"hat_group", "value":"true"} [hat]{"entity":"hat", "group":"hat_group", "value":"hat"}
+    intent: ask_with_info
+  - action: utter_ask_other_info
+  - intent: affirm
+  - action: person form
+
+
+- story: test give explanation rule
+  steps:
+  - user: |
+      searching for a [girl]{"entity":"gender", "value":"female"} [with]{"entity":"is_with", "group":"upper_group", "value":"true"} [pink]{"entity":"color", "group":"upper_group", "value":"pink"} [blouse]{"entity":"shirt", "group":"upper_group", "value":"shirt"}
+    intent: ask_with_info
+  - action: person_form
+  - intent: explain
+  - action: utter_explain
+
+
+- story: stop the form test story
+  steps:
+  - user: |
+      i'm looking for a person
+    intent: ask_with_info
+  - action: person_form
+  - intent: stop_form
+  - action: action_submit_find
+  - action: action_deactivate_loop
+
+
+- story: suit test
+  steps:
+  - user: |
+     can you find a individual  and [wearing]{"entity":"is_with", "group":"lower_group", "value":"true"} [orange]{"entity":"color", "group":"lower_group", "value":"orange"} [clothing]{"entity":"pants", "group":"lower_group", "value":"suit"}
+    intent: ask_with_info
+  - action: action_correct_entities_values
+  - action: action_suit
+  - slot_was_set:
+    upper_color: orange
+    lower_color: orange
+
+- story: test wrong slot response
+  steps:
+  - user: |
+      i'm looking for a person
+    intent: ask_with_info
+  - action: utter_ask_other_info
+  - intent: affirm
+  - action: person_form
+  - active_loop: person_form
+  - action: utter_ask_gender
+  - user: |
+      yes
+  - action: person_form
+  - action: utter_ask_gender
+  - user: |
+      male
+  - action: person_form
+
+
+- story: test form
+  steps:
+  - user: |
+      i am looking for a person
+    intent: ask_with_no_info
+  - action: utter_no_info
+  - action: person_form
+  - active_loop: person_form
+  - user: |
+      male
+    intent: inform_info
+  - action: person_form
+  - user: |
+      yes
+    intent: affirm
+  - action: person_form
+  - user: |
+      no
+    intent: deny
+  - action: person_form
+  - user: |
+      red
+    intent: inform_info
+  - action: person_form
+  - user: |
+      black
+    intent: inform_info
+  - action: person_form
+  - user: |
+      yes
+    intent: affirm
+  - action: person_form
+  - user: |
+      5 minutes
+    intent: inform_info
+  - action: person_form
+  - user: |
+      no
+    intent: deny
+  - action: person_form
+  - active_loop: null
+  
+    

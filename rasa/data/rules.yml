@@ -1,0 +1,127 @@
+version: '3.0'
+
+rules:
+
+- rule: Bot doesn't understand
+  steps:
+  - intent: nlu_fallback
+  - action: utter_dont_understand
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- rule: Say hi i'm pepper anytime the user says hi
+  conversation_start: true
+  steps:
+    - intent: greet
+    - action: utter_greet
+
+- rule: Ask information when not given
+  steps:
+    - intent: ask_with_no_info
+    - action: action_all_slots_reset
+    - action: utter_no_info
+    - action: person_form
+    - active_loop: person_form
+
+
+- rule: Submit information form
+  condition:
+  # Condition that form is active.
+  - active_loop: person_form
+  steps:
+  # Form is deactivated
+  - action: person_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  # The actions we want to run when the form is submitted.
+  - action: action_submit_find
+  - action: action_all_slots_reset
+
+
+- rule: ask with info
+  condition:
+    - active_loop: null
+  steps:
+    - intent: ask_with_info
+    - action: action_correct_entities_values
+    - action: action_suit
+    - action: action_submit_find
+
+
+- rule: ask other info and yes
+  steps:
+    - action: utter_ask_other_info
+    - intent: affirm
+    - action: person_form
+    - active_loop: person_form
+
+- rule: give explanation
+  condition:
+    - active_loop: person_form
+  steps:
+    - intent: explain
+    - action: utter_explain
+
+- rule: stop the form when info is finish
+  condition:
+  - active_loop: person_form
+  steps:
+    - intent: stop_form
+    - action: action_submit_find
+    - action: action_deactivate_loop
+    - active_loop: null
+    - action: action_all_slots_reset
+
+
+- rule: ask other info and no
+  steps:
+    - action: utter_ask_other_info
+    - intent: deny
+    - action: utter_ask_new_search
+
+- rule: count people with given info
+  condition:
+    - active_loop: null
+  steps:
+    - intent: count_people
+    - action: action_correct_entities_values
+    - action: action_suit
+    - action: action_submit_count
+
+- rule: count with other info and yes
+  steps:
+    - action: utter_ask_other_info
+    - intent: affirm
+    - action: person_form
+    - active_loop: person_form
+
+- rule: affirm entity
+  condition:
+    - active_loop: person_form
+  steps:
+    - intent: affirm_with_entity
+    - action: person_form
+
+- rule: deny entity
+  condition:
+    - active_loop: person_form
+  steps:
+    - intent: deny_with_entity
+    - action: person_form
+
+- rule: don't ask new search
+  steps:
+    - action: utter_ask_new_search
+    - intent: deny
+    - action: utter_goodbye
+    - action: action_all_slots_reset
+

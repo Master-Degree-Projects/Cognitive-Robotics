@@ -1,0 +1,510 @@
+version: '3.1'
+
+session_config:
+  session_expiration_time: 3
+  carry_over_slots_to_new_session: false
+
+define: &UNKOWN ""
+intents:
+- affirm
+- affirm_with_entity
+- deny_with_entity
+- mood_great
+- mood_unhappy
+- deny
+- doubt
+- ask_with_info
+- ask_with_no_info
+- bot_challenge
+- goodbye
+- greet
+- inform_info
+- count_people
+- purpose_bot
+- explain
+- stop_form
+
+entities:
+- gender
+- hat
+- bag
+- color
+- is_with
+- roi
+- aux_time_of_persistence
+- shirt
+- pants
+- duration
+- number
+
+slots:
+
+  duration:
+    type: list
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: duration
+
+  number:
+    type: list
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: number
+
+  hat:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_intent
+      intent: doubt
+      value: *UNKOWN
+      conditions:
+      - active_loop: person_form
+        requested_slot: hat
+    - type: from_intent
+      intent: affirm
+      value: true
+      conditions:
+      - active_loop: person_form
+        requested_slot: hat
+    - type: from_intent
+      intent: deny
+      value: false
+      conditions:
+      - active_loop: person_form
+        requested_slot: hat
+    - type: from_entity
+      entity: hat
+      intent: affirm_with_entity
+      conditions:
+        - active_loop: person_form
+          requested_slot: hat
+    - type: from_entity
+      entity: hat
+      group: hat_group
+      intent: deny_with_entity
+      conditions:
+        - active_loop: person_form
+          requested_slot: hat
+    - type: from_entity
+      entity: hat
+      group: hat_group
+        
+  bag:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_intent
+      intent: doubt
+      value: *UNKOWN
+      conditions:
+      - active_loop: person_form
+        requested_slot: bag
+    - type: from_intent
+      intent: affirm
+      value: true
+      conditions:
+      - active_loop: person_form
+        requested_slot: bag
+    - type: from_intent
+      intent: deny
+      value: false
+      conditions:
+      - active_loop: person_form
+        requested_slot: bag
+    - type: from_entity
+      entity: bag
+      intent: affirm_with_entity
+      conditions:
+        - active_loop: person_form
+          requested_slot: bag
+    - type: from_entity
+      entity: bag
+      group: bag_group
+      intent: deny_with_entity
+      conditions:
+        - active_loop: person_form
+          requested_slot: bag
+    - type: from_entity
+      entity: bag
+      group: bag_group
+
+  gender:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_intent
+      intent: doubt
+      value: *UNKOWN
+      conditions:
+      - active_loop: person_form
+        requested_slot: gender
+    - type: from_entity
+      entity: gender
+
+      
+  upper_color:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_intent
+      intent: doubt
+      value: *UNKOWN
+      conditions:
+      - active_loop: person_form
+        requested_slot: upper_color
+    - type: from_entity
+      entity: color
+      intent: inform_info
+      conditions:
+        - active_loop: person_form
+          requested_slot: upper_color
+    - type: from_entity
+      entity: color
+      group: upper_group
+      
+  lower_color:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_intent
+      intent: doubt
+      value: *UNKOWN
+      conditions:
+      - active_loop: person_form
+        requested_slot: lower_color
+    - type: from_entity
+      entity: color
+      intent: inform_info
+      conditions:
+        - active_loop: person_form
+          requested_slot: lower_color
+    - type: from_entity
+      entity: color
+      group: lower_group
+
+  suit:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: shirt
+        group: upper_group
+      - type: from_entity
+        entity: pants
+        group: lower_group
+
+  aux_time_of_persistence:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: aux_time_of_persistence
+
+
+  is_with_upper:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: is_with
+        group: upper_group
+
+  is_with_lower:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: is_with
+        group: lower_group
+
+  is_with_hat:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: is_with
+        group: hat_group
+
+  is_with_bag:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: is_with
+        group: bag_group
+
+  market:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: roi
+        group: market_group
+      - type: from_intent
+        intent: doubt
+        value: *UNKOWN
+        conditions:
+          - active_loop: person_form
+            requested_slot: market
+      - type: from_intent
+        intent: affirm
+        value: true
+        conditions:
+          - active_loop: person_form
+            requested_slot: market
+      - type: from_entity
+        entity: roi
+        intent: affirm_with_entity
+        conditions:
+          - active_loop: person_form
+            requested_slot: market
+      - type: from_entity
+        entity: roi
+        group: market_group
+        intent: deny_with_entity
+        conditions:
+          - active_loop: person_form
+            requested_slot: market
+      - type: from_intent
+        intent: deny
+        value: false
+        conditions:
+          - active_loop: person_form
+            requested_slot: market
+
+  bar:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: roi
+        group: bar_group
+      - type: from_intent
+        intent: doubt
+        value: *UNKOWN
+        conditions:
+          - active_loop: person_form
+            requested_slot: bar
+      - type: from_intent
+        intent: affirm
+        value: true
+        conditions:
+          - active_loop: person_form
+            requested_slot: bar
+      - type: from_entity
+        entity: roi
+        intent: affirm_with_entity
+        conditions:
+          - active_loop: person_form
+            requested_slot: bar
+      - type: from_entity
+        entity: roi
+        group: bar_group
+        intent: deny_with_entity
+        conditions:
+          - active_loop: person_form
+            requested_slot: bar
+      - type: from_intent
+        intent: deny
+        value: false
+        conditions:
+          - active_loop: person_form
+            requested_slot: bar
+
+  time_of_persistence_market:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_intent
+        intent: doubt
+        value: *UNKOWN
+        conditions:
+          - active_loop: person_form
+            requested_slot: time_of_persistence_market
+      - type: from_entity
+        entity: duration
+        intent: inform_info
+        conditions:
+          - active_loop: person_form
+            requested_slot: time_of_persistence_market
+
+  bar_passages:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: number
+
+  market_passages:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: number
+
+  time_of_persistence_bar:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_intent
+        intent: doubt
+        value: *UNKOWN
+        conditions:
+          - active_loop: person_form
+            requested_slot: time_of_persistence_bar
+      - type: from_entity
+        entity: duration
+        intent: inform_info
+        conditions:
+          - active_loop: person_form
+            requested_slot: time_of_persistence_bar
+
+  is_with_bar:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: is_with
+        group: bar_group
+
+  is_with_market:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: is_with
+        group: market_group
+
+forms:
+  person_form:
+    ignored_intents:
+    - mood_great
+    - greet
+    required_slots:
+    - gender
+    - bag
+    - hat
+    - upper_color
+    - lower_color
+    - bar
+    - time_of_persistence_bar
+    - market
+    - time_of_persistence_market
+
+responses:
+  utter_greet:
+  - text: Hey i'm pepper! How can I help you?
+  - text: Hi, how can I help you?
+  - text: Hello, I'm the guardian of the shopping center, if you need help just ask.
+  utter_cheer_up:
+  - image: https://i.imgur.com/nGF1K8f.jpg
+    text: 'Here is something to cheer you up:'
+  utter_did_that_help:
+  - text: Did that help you?
+  - text: Was it helpful?
+  utter_handle_form:
+  - text: Sorry, I first need to finish the questions. After it you can ask me other.
+  utter_goodbye:
+  - text: Bye
+  - text: Goodbye
+  - text: See you
+  - text: See you next time
+  utter_purpose:
+  - text: I can give you information about people in the market or in the bar. If you give me more information I can be more specific.
+  - text: I can help you find people in the market or in the bar.
+  utter_help:
+    - text: Awesome! You can ask me things like "Find me people with hat".
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_remember:
+  - text: Thanks. I'll remember that.
+  utter_searching_person:
+  - text: Response for searching people
+  utter_ask_other_info:
+  - text: Can you give me more information?
+  - text: Can you provide me more information about this person?
+  - text: For a more detailed research, can you give me more information?
+  utter_no_info:
+  - text: Can you give more info?
+  - text: I don't have enough information... Can you give me more details?
+  # utter to ask information about the gender
+  utter_ask_gender:
+  - text: Can you tell me the gender?
+  - text: Is it a male or a female?
+  - text: What gender is it?
+  # utter to ask information about the hat
+  utter_ask_hat:
+  - text: Does this person have a hat?
+  - text: Does it wear a hat?
+  - text: was it wearing a hat?
+  # utter to ask information about the bag
+  utter_ask_bag:
+  - text: Does this person have a bag?
+  - text: Does it have a bag?
+  - text: was it wearing a bag?
+  # utter to ask information about the upper color
+  utter_ask_upper_color:
+  - text: what color is its t-shirt?
+  - text: How it was dressed on top?
+  # utter to ask information about the lower color
+  utter_ask_lower_color:
+  - text: what color are its pants?
+  - text: what it was wearing for lower?
+  - text: how it was dressed underneath?
+  utter_ask_bar:
+  - text: Has it passed the bar?
+  - text: Has it been in the bar?
+  - text: Was it in the bar?
+  utter_ask_market:
+  - text: Has it passed the market?
+  - text: Has it been in the market?
+  - text: Was it in the market?
+  utter_ask_time_of_persistence_market:
+  - text: how long was it in the market?
+  - text: how long has it been in the market?
+  utter_ask_time_of_persistence_bar:
+  - text: how long was it in the bar?
+  - text: how long has it been in the bar?
+  utter_explain:
+  - text: I need this information to improve research
+  utter_dont_understand:
+  - text: I'm sorry, I don't understand. Could you please repeat?
+  - text: I didn't catch that. Could you please repeat?
+  - text: Could you rephrase what you just said? I didn't understand.
+  utter_ask_new_search:
+  - text: Would you like to initiate another search?
+  - text: Are you interested in conducting a different search?
+  - text: Are you searching for someone new?
+  - text: Do you need assistance in finding another person?
+  - text: Would you like to start a different search?
+
+actions:
+- utter_greet
+- action_submit_find
+- action_submit_count
+- utter_goodbye
+- utter_remember
+- utter_no_info
+- utter_ask_hat
+- utter_ask_bag
+- utter_ask_gender
+- utter_searching_person
+- utter_ask_upper_color
+- utter_ask_lower_color
+- utter_ask_other_info
+- utter_ask_time_of_persistence_market
+- utter_ask_time_of_persistence_bar
+- utter_purpose
+- utter_help
+- action_all_slots_reset
+- action_unkown_info
+- utter_dont_understand
+- utter_explain
+- utter_handle_form
+- validate_person_form
+- utter_ask_new_search
+- action_suit
+- action_correct_entities_values
+- action_reset_previous_slots

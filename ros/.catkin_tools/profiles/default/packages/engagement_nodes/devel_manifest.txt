@@ -1,0 +1,5 @@
+engagement_nodes
+/home/dario1492/Desktop/project_cognitive/ros_project/group3_ws/devel/.private/engagement_nodes/cmake.lock /home/dario1492/Desktop/project_cognitive/ros_project/group3_ws/devel/./cmake.lock
+/home/dario1492/Desktop/project_cognitive/ros_project/group3_ws/devel/.private/engagement_nodes/share/engagement_nodes/cmake/engagement_nodesConfig-version.cmake /home/dario1492/Desktop/project_cognitive/ros_project/group3_ws/devel/share/engagement_nodes/cmake/engagement_nodesConfig-version.cmake
+/home/dario1492/Desktop/project_cognitive/ros_project/group3_ws/devel/.private/engagement_nodes/share/engagement_nodes/cmake/engagement_nodesConfig.cmake /home/dario1492/Desktop/project_cognitive/ros_project/group3_ws/devel/share/engagement_nodes/cmake/engagement_nodesConfig.cmake
+/home/dario1492/Desktop/project_cognitive/ros_project/group3_ws/devel/.private/engagement_nodes/lib/pkgconfig/engagement_nodes.pc /home/dario1492/Desktop/project_cognitive/ros_project/group3_ws/devel/lib/pkgconfig/engagement_nodes.pc
